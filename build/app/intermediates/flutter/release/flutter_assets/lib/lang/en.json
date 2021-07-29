@@ -1,0 +1,27 @@
+{
+
+  "appName" : "appName",
+  "submit" : "SUBMIT",
+  "appBarTitle" : "Flyingwolf",
+  "userNameErrorText" : "Username should be of min 3 characters and max 10",
+  "passwordErrorText" : "Password should be of min 3 characters and max 10",
+  "invalidPassword" : "Invalid Password",
+  "userNotFound" : "User not found",
+  "settings" : "Settings",
+  "changeLanguage" : "Change Language",
+  "userName" : "User name",
+  "password" : "Password",
+  "recommendedForYou" : "Recommended for you",
+  "languages" : "Languages",
+  "japanese" : "Japanese",
+  "english" : "English",
+  "eloRating" : "Elo rating",
+  "logOut" : "Log Out",
+  "tournamentsPlayed" : "Tournaments \nplayed",
+  "tournamentsWon" : "Tournaments \nwon",
+  "winningPercentage" : "Winning \npercentage",
+  "pleaseFillDetails": "Please fill the details",
+  "mobileEsportsLive": "Mobile Esports Live Here"
+
+  
+}

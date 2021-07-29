@@ -1,0 +1,27 @@
+{
+
+  "appName" : "appName",
+  "submit" : "参加する",
+  "appBarTitle" : "フライングウルフ",
+  "changeLanguage" : "言語を変更",
+  "userNameErrorText" : "ユーザー名は最小3文字、最大10文字である必要があります",
+  "passwordErrorText" : "パスワードは最小3文字、最大10文字である必要があります",
+  "invalidPassword" : "無効なパスワード",
+  "userNotFound" : "ユーザーが見つかりません",
+  "settings" : "設定",
+  "userName" : "ユーザー名",
+  "password" : "パスワード",
+  "recommendedForYou" : "あなたにおすすめ",
+  "languages" : "言語",
+  "japanese" : "日本",
+  "english" : "English",
+  "eloRating" : "イロレーティング",
+  "logOut" : "ログアウト",
+  "tournamentsPlayed" : "トーナメント\n遊んだ",
+  "tournamentsWon" : "トーナメント\n勝った",
+  "winningPercentage" : "勝つ\nパーセンテージ",
+  "pleaseFillDetails": "詳細を記入してください",
+  "mobileEsportsLive": "モバイルeスポーツはここに住んでいます"
+
+
+}
