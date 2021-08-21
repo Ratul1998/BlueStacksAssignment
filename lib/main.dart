@@ -1,5 +1,7 @@
+import 'package:bluestack_assignment/Bloc/login_bloc/auth_repository.dart';
 import 'package:bluestack_assignment/Screens/HomePage.dart';
 import 'package:bluestack_assignment/Screens/LoginScreen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'Config/SharedPreferenceKey.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,7 +24,7 @@ Future<void> main () async {
 
   }else{
 
-    runApp(MyApp(isSignedIn: true,userID:sharedPreferences.getString(SharedPreferenceKey.userName)));
+    runApp(MyApp(isSignedIn: true,token:sharedPreferences.getString(SharedPreferenceKey.password),userID:sharedPreferences.getString(SharedPreferenceKey.userName)));
 
   }
 
@@ -35,8 +37,9 @@ class MyApp extends StatefulWidget  {
   bool isSignedIn = false;
 
   String userID;
+  String token;
 
-  MyApp({this.isSignedIn,this.userID});
+  MyApp({this.isSignedIn,this.userID,this.token});
 
   static void setLocale(BuildContext context, Locale newLocale) {
     _MyAppState state = context.findAncestorStateOfType<_MyAppState>();
@@ -102,7 +105,14 @@ class _MyAppState extends State<MyApp> {
         return supportedLocales.first;
       },
 
-      home:  widget.isSignedIn ? HomePage(userID: widget.userID,) : LoginScreen()  ,
+      routes: {
+
+        '/login': (context) => RepositoryProvider(create:(context) => AuthRepository(), child: LoginScreen()),
+        '/homepage' : (context) => HomePage(userID: widget.userID,token: widget.token,)
+
+      },
+
+      home:  widget.isSignedIn ? HomePage(userID: widget.userID,token: widget.token,) : RepositoryProvider(create:(context) => AuthRepository(), child: LoginScreen())  ,
     );
   }
 

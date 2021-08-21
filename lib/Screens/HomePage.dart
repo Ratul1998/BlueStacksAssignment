@@ -14,8 +14,9 @@ class HomePage extends StatelessWidget {
   bool init = false;
 
   String userID;
+  String token;
 
-  HomePage({this.userID});
+  HomePage({this.userID,this.token});
 
   @override
   Widget build(BuildContext context) {

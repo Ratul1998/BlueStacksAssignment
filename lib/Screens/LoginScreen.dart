@@ -1,103 +1,124 @@
+import 'package:bluestack_assignment/Bloc/login_bloc/auth_repository.dart';
+import 'package:bluestack_assignment/Bloc/login_bloc/form_submission_status.dart';
+import 'package:bluestack_assignment/Bloc/login_bloc/login_bloc.dart';
+import 'package:bluestack_assignment/Bloc/login_bloc/login_event.dart';
+import 'package:bluestack_assignment/Bloc/login_bloc/login_state.dart';
 import 'package:bluestack_assignment/Config/KeyStrings.dart';
-import 'package:bluestack_assignment/Providers/LoginProvider.dart';
 import 'package:bluestack_assignment/localization/language_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+
+import 'HomePage.dart';
 
 class LoginScreen extends StatelessWidget {
 
   bool init = false;
 
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
 
-    return ChangeNotifierProvider(
-      lazy: false,
-      create: (context)=>LoginProvider(),
+    return Scaffold(
 
-      child: Consumer<LoginProvider>(
+      backgroundColor: Colors.white,
 
-        builder: (BuildContext context, LoginProvider value, Widget child) {
+      body: BlocProvider(
 
-          if(!init) {
-            Provider.of<LoginProvider>(context, listen: false).init(context);
-            init = true;
-          }
+        create: (context) => LoginBloc(authRepository: context.read<AuthRepository>()),
 
-          return Scaffold(
+        child: Container(
 
-            backgroundColor: Colors.white,
+          color: Colors.black87,
 
-            body: Container(
+          child: Stack(
 
-              color: Colors.black87,
+            children: [
 
-              child: Stack(
+              Container(
 
-                children: [
+                alignment: Alignment.bottomCenter,
 
-                  Container(
+                child: Image.asset(
+                  'assets/images/controller.png',
+                  height: 180,
+                  width: 180,
+                  color: Colors.white.withOpacity(0.4),
 
-                    alignment: Alignment.bottomCenter,
+                ),
+              ),
 
-                    child: Image.asset(
-                      'assets/images/controller.png',
-                      height: 180,
-                      width: 180,
-                      color: Colors.white.withOpacity(0.4),
+              Center(
 
-                    ),
-                  ),
+                child: SingleChildScrollView(
 
-                  Center(
+                  child: Column(
 
-                    child: SingleChildScrollView(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
 
-                      child: Column(
+                    children: [
 
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                      Image.asset(
+                        'assets/images/game_tv_logo.png',
+                        height: 180,
+                        width: 180,
+                        color: Colors.white,
+                      ),
 
-                        children: [
+                      Container(
 
-                          Image.asset(
-                            'assets/images/game_tv_logo.png',
-                            height: 180,
-                            width: 180,
+                        child: Text(
+
+                          getTranslated(context, KeyStrings.mobileEsportsLive).toUpperCase(),style: TextStyle(color: Colors.white,fontSize: 16),
+
+                        ),
+
+                      ),
+
+                      SizedBox(height: 64,),
+
+                      Container(
+
+                        margin: EdgeInsets.symmetric(horizontal: 32,vertical: 32),
+
+                        decoration: BoxDecoration(
+
+                            borderRadius: BorderRadius.circular(12),
+
                             color: Colors.white,
-                          ),
 
-                          Container(
+                            boxShadow: [BoxShadow(
 
-                            child: Text(
-
-                              getTranslated(context, KeyStrings.mobileEsportsLive).toUpperCase(),style: TextStyle(color: Colors.white,fontSize: 16),
-
-                            ),
-
-                          ),
-
-                          SizedBox(height: 64,),
-
-                          Container(
-
-                            margin: EdgeInsets.symmetric(horizontal: 32,vertical: 32),
-
-                            decoration: BoxDecoration(
-
-                              borderRadius: BorderRadius.circular(12),
-
+                              blurRadius: 6,
                               color: Colors.white,
 
-                              boxShadow: [BoxShadow(
+                            )]
 
-                                blurRadius: 6,
-                                color: Colors.white,
+                        ),
 
-                              )]
+                        child: BlocListener<LoginBloc,LoginState>(
 
-                            ),
+                          listener: (context,state){
+
+                            final formStatus = state.formStatus;
+
+                            if(formStatus is SubmissionFailed){
+                              _showSnackBar(context, formStatus.exception.toString());
+                            }
+                            else if(formStatus is SubmittingSuccess){
+                              Navigator.pop(context);
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (BuildContext context) =>HomePage(userID: state.username,token: state.password,)));
+                            }
+
+                          },
+
+                          child: Form(
+
+                            key: _formKey,
 
                             child: Column(
 
@@ -108,78 +129,109 @@ class LoginScreen extends StatelessWidget {
 
                                   margin: EdgeInsets.only(left: 12, right: 12, top: 24),
 
-                                  child: TextFormField(
+                                  child: BlocBuilder<LoginBloc,LoginState>(
 
-                                      onChanged: value.onUserNameChange,
+                                    builder: (BuildContext context, state) {
 
-                                      decoration: InputDecoration(
+                                      return TextFormField(
 
-                                        labelText: getTranslated(context, KeyStrings.userName),
+                                          onChanged: (value)=> context.read<LoginBloc>().add(UsernameChanged(username: value)),
 
-                                        errorText: value.userNameErrorText,
+                                          validator: (value) => state.isValidUserName ? null : getTranslated(context, KeyStrings.userNameErrorText),
 
-                                        prefixIcon: Icon(Icons.person),
+                                          decoration: InputDecoration(
 
-                                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
+                                            labelText: getTranslated(context, KeyStrings.userName),
 
-                                      )),
+                                            prefixIcon: Icon(Icons.person),
+
+                                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
+
+                                          ));
+
+                                    },
+
+                                  ),
                                 ),
 
                                 Container(
                                   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
                                   margin: EdgeInsets.only(left: 12, right: 12, top: 32),
-                                  child: TextFormField(
+                                  child: BlocBuilder<LoginBloc,LoginState>(
 
-                                      onChanged: value.onPasswordChange,
+                                    builder: (BuildContext context,state){
 
-                                      obscureText: value.hidePassword,
+                                      return TextFormField(
 
-                                      decoration: InputDecoration(
+                                          onChanged: (value) => context.read<LoginBloc>().add(PasswordChanged(password: value)),
 
-                                        labelText: getTranslated(context, KeyStrings.password),
+                                          validator: (value) => state.isValidPassword ? null : getTranslated(context, KeyStrings.passwordErrorText),
 
-                                        errorText: value.passwordErrorText,
+                                          obscureText: !state.isPasswordVisible,
 
-                                        prefixIcon: Icon(Icons.lock),
+                                          decoration: InputDecoration(
 
-                                        suffixIcon: IconButton(
+                                            labelText: getTranslated(context, KeyStrings.password),
 
-                                          onPressed: value.onPasswordSeen,
 
-                                          icon: Icon(Icons.remove_red_eye, size: 20,),
+                                            prefixIcon: Icon(Icons.lock),
 
-                                        ),
+                                            suffixIcon: IconButton(
 
-                                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
-                                      )),
+                                              onPressed: () => context.read<LoginBloc>().add(PasswordVisibilityChanged()),
+
+                                              icon: Icon(Icons.remove_red_eye, size: 20,),
+
+                                            ),
+
+                                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
+                                          ));
+
+                                    },
+                                  ),
                                 ),
 
                                 SizedBox(height: 24,),
 
-                                ElevatedButton(
+                                BlocBuilder<LoginBloc,LoginState>(
 
-                                  child: Padding(
+                                  builder: (BuildContext context, state) {
 
-                                    padding: EdgeInsets.symmetric(horizontal: 48.0, vertical: 12.0),
+                                    return state.formStatus is FormSubmitting ? CircularProgressIndicator() :ElevatedButton(
 
-                                    child: Text(
-                                        getTranslated(context, KeyStrings.submit),
-                                        style: TextStyle(fontSize: 14)
-                                    ),
-                                  ),
+                                      child: Padding(
 
-                                  style: ButtonStyle(
+                                        padding: EdgeInsets.symmetric(horizontal: 48.0, vertical: 12.0),
 
-                                      backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(4)),
-                                              side: BorderSide(color: Colors.black)
+                                        child: Text(
+                                            getTranslated(context, KeyStrings.submit),
+                                            style: TextStyle(fontSize: 14)
+                                        ),
+                                      ),
+
+                                      style: ButtonStyle(
+
+                                          backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.all(Radius.circular(4)),
+                                                  side: BorderSide(color: Colors.black)
+                                              )
                                           )
-                                      )
-                                  ),
+                                      ),
 
-                                  onPressed: value.onSubmit,
+                                      onPressed: (){
+
+                                        if(_formKey.currentState.validate()){
+                                          FocusScope.of(context).unfocus();
+                                          context.read<LoginBloc>().add(LoginSubmitted());
+                                        }
+
+
+                                      },
+                                    );
+
+                                  },
                                 ),
 
                                 SizedBox(height: 24,),
@@ -187,24 +239,28 @@ class LoginScreen extends StatelessWidget {
                               ],
 
                             ),
-
                           ),
+                        ),
 
-                          SizedBox(height: 16,),
-
-                        ],
                       ),
-                    ),
+
+                      SizedBox(height: 16,),
+
+                    ],
                   ),
-                ],
+                ),
               ),
-            ) ,
-          );
-
-
-        },
-
+            ],
+          ),
+        ),
       ) ,
     );
+  }
+
+  void _showSnackBar(BuildContext context,String message){
+
+    final snackBar = SnackBar(backgroundColor:Colors.white,content: Text(message,style: TextStyle(color: Colors.black87),));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
   }
 }
