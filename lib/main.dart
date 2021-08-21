@@ -2,6 +2,7 @@ import 'package:bluestack_assignment/Bloc/home_page_bloc/api_repository.dart';
 import 'package:bluestack_assignment/Bloc/login_bloc/auth_repository.dart';
 import 'package:bluestack_assignment/Screens/HomePage.dart';
 import 'package:bluestack_assignment/Screens/LoginScreen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'Bloc/home_page_bloc/home_page_bloc.dart';
 import 'Config/SharedPreferenceKey.dart';
@@ -19,6 +20,8 @@ Future<void> main () async {
 
   //Getting SharedPreferences to check if the user has already logged in or not
   final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+
 
   if (sharedPreferences.getString(SharedPreferenceKey.userName) == null) {
 

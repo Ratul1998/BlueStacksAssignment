@@ -2,6 +2,7 @@ import 'package:bluestack_assignment/Bloc/home_page_bloc/home_page_bloc.dart';
 import 'package:bluestack_assignment/Bloc/home_page_bloc/home_page_event.dart';
 import 'package:bluestack_assignment/Bloc/home_page_bloc/home_page_state.dart';
 import 'package:bluestack_assignment/Config/KeyStrings.dart';
+import 'package:bluestack_assignment/Config/SharedPreferenceKey.dart';
 import 'package:bluestack_assignment/DataModels/RecommendationsDetail.dart';
 import 'package:bluestack_assignment/DataModels/UserDetail.dart';
 import 'package:bluestack_assignment/Widgets/favourite_game.dart';
@@ -9,6 +10,7 @@ import 'package:bluestack_assignment/localization/language_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Widgets/RecommendationList.dart';
 import '../Widgets/UserDetails.dart';
@@ -137,7 +139,7 @@ class HomeState extends State<HomePage>{
 
             ListTile(
               onTap: () {
-                //value.onLogOut();
+                onLogOut();
               },
               leading: Icon(
                 Icons.logout,
@@ -323,6 +325,14 @@ class HomeState extends State<HomePage>{
       ),
     );
 
+  }
+
+  void onLogOut() async {
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.remove(SharedPreferenceKey.userName);
+    sharedPreferences.remove(SharedPreferenceKey.password);
+    Navigator.pop(context);
+    Navigator.of(context).pushNamed('/login');
   }
 
 }

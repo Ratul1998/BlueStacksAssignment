@@ -1,3 +1,5 @@
+import 'package:bluestack_assignment/Bloc/home_page_bloc/api_repository.dart';
+import 'package:bluestack_assignment/Bloc/home_page_bloc/home_page_bloc.dart';
 import 'package:bluestack_assignment/Bloc/login_bloc/auth_repository.dart';
 import 'package:bluestack_assignment/Bloc/login_bloc/form_submission_status.dart';
 import 'package:bluestack_assignment/Bloc/login_bloc/login_bloc.dart';
@@ -109,9 +111,23 @@ class LoginScreen extends StatelessWidget {
                               _showSnackBar(context, formStatus.exception.toString());
                             }
                             else if(formStatus is SubmittingSuccess){
+
                               Navigator.pop(context);
+
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (BuildContext context) =>HomePage(userID: state.username,token: state.password,)));
+
+                                  builder: (BuildContext context) => RepositoryProvider(
+
+                                      create:(context) => ApiRepository(),
+
+                                      child: BlocProvider(
+
+                                        create: (context) => HomePageBloc(apiRepository: context.read<ApiRepository>(),userId: state.username,token: state.password),
+
+                                        child: HomePage(userID: state.username,token: state.password,),
+
+                                      )
+                                  ) ));
                             }
 
                           },

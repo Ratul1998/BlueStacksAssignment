@@ -5,7 +5,7 @@
 5    android:versionName="1.0.0" >
 6
 7    <uses-sdk
-8        android:minSdkVersion="16"
+8        android:minSdkVersion="21"
 9        android:targetSdkVersion="29" />
 10    <!--
 11         Flutter needs it to communicate with the running application
@@ -97,6 +97,63 @@
 64-->E:\blueStackFlutterAssignment-master\android\app\src\main\AndroidManifest.xml:50:13-44
 65            android:value="2" />
 65-->E:\blueStackFlutterAssignment-master\android\app\src\main\AndroidManifest.xml:51:13-30
-66    </application>
-67
-68</manifest>
+66
+67        <service
+67-->[:cloud_firestore] E:\blueStackFlutterAssignment-master\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+68            android:name="com.google.firebase.components.ComponentDiscoveryService"
+68-->[:cloud_firestore] E:\blueStackFlutterAssignment-master\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:18-89
+69            android:directBootAware="true"
+69-->[com.google.firebase:firebase-common:20.0.0] C:\Users\ratul\.gradle\caches\transforms-2\files-2.1\46eecf140f41d0bf608a35803915626a\jetified-firebase-common-20.0.0\AndroidManifest.xml:35:13-43
+70            android:exported="false" >
+70-->[com.google.firebase:firebase-firestore:23.0.1] C:\Users\ratul\.gradle\caches\transforms-2\files-2.1\2d0464483dbae2abad7e2ce349df618f\jetified-firebase-firestore-23.0.1\AndroidManifest.xml:19:13-37
+71            <meta-data
+71-->[:cloud_firestore] E:\blueStackFlutterAssignment-master\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+72                android:name="com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar"
+72-->[:cloud_firestore] E:\blueStackFlutterAssignment-master\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-134
+73                android:value="com.google.firebase.components.ComponentRegistrar" />
+73-->[:cloud_firestore] E:\blueStackFlutterAssignment-master\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+74            <meta-data
+74-->[:firebase_core] E:\blueStackFlutterAssignment-master\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+75                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
+75-->[:firebase_core] E:\blueStackFlutterAssignment-master\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-124
+76                android:value="com.google.firebase.components.ComponentRegistrar" />
+76-->[:firebase_core] E:\blueStackFlutterAssignment-master\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+77            <meta-data
+77-->[com.google.firebase:firebase-firestore:23.0.1] C:\Users\ratul\.gradle\caches\transforms-2\files-2.1\2d0464483dbae2abad7e2ce349df618f\jetified-firebase-firestore-23.0.1\AndroidManifest.xml:20:13-22:85
+78                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+78-->[com.google.firebase:firebase-firestore:23.0.1] C:\Users\ratul\.gradle\caches\transforms-2\files-2.1\2d0464483dbae2abad7e2ce349df618f\jetified-firebase-firestore-23.0.1\AndroidManifest.xml:21:17-111
+79                android:value="com.google.firebase.components.ComponentRegistrar" />
+79-->[com.google.firebase:firebase-firestore:23.0.1] C:\Users\ratul\.gradle\caches\transforms-2\files-2.1\2d0464483dbae2abad7e2ce349df618f\jetified-firebase-firestore-23.0.1\AndroidManifest.xml:22:17-82
+80        </service>
+81
+82        <provider
+82-->[com.google.firebase:firebase-common:20.0.0] C:\Users\ratul\.gradle\caches\transforms-2\files-2.1\46eecf140f41d0bf608a35803915626a\jetified-firebase-common-20.0.0\AndroidManifest.xml:26:9-31:39
+83            android:name="com.google.firebase.provider.FirebaseInitProvider"
+83-->[com.google.firebase:firebase-common:20.0.0] C:\Users\ratul\.gradle\caches\transforms-2\files-2.1\46eecf140f41d0bf608a35803915626a\jetified-firebase-common-20.0.0\AndroidManifest.xml:27:13-77
+84            android:authorities="com.ratul.bluestack_assignment.firebaseinitprovider"
+84-->[com.google.firebase:firebase-common:20.0.0] C:\Users\ratul\.gradle\caches\transforms-2\files-2.1\46eecf140f41d0bf608a35803915626a\jetified-firebase-common-20.0.0\AndroidManifest.xml:28:13-72
+85            android:directBootAware="true"
+85-->[com.google.firebase:firebase-common:20.0.0] C:\Users\ratul\.gradle\caches\transforms-2\files-2.1\46eecf140f41d0bf608a35803915626a\jetified-firebase-common-20.0.0\AndroidManifest.xml:29:13-43
+86            android:exported="false"
+86-->[com.google.firebase:firebase-common:20.0.0] C:\Users\ratul\.gradle\caches\transforms-2\files-2.1\46eecf140f41d0bf608a35803915626a\jetified-firebase-common-20.0.0\AndroidManifest.xml:30:13-37
+87            android:initOrder="100" />
+87-->[com.google.firebase:firebase-common:20.0.0] C:\Users\ratul\.gradle\caches\transforms-2\files-2.1\46eecf140f41d0bf608a35803915626a\jetified-firebase-common-20.0.0\AndroidManifest.xml:31:13-36
+88
+89        <activity
+89-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\ratul\.gradle\caches\transforms-2\files-2.1\5ac9ad6f13ea0190a3570ea7a43d9f59\play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
+90            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+90-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\ratul\.gradle\caches\transforms-2\files-2.1\5ac9ad6f13ea0190a3570ea7a43d9f59\play-services-base-17.0.0\AndroidManifest.xml:24:13-79
+91            android:exported="false"
+91-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\ratul\.gradle\caches\transforms-2\files-2.1\5ac9ad6f13ea0190a3570ea7a43d9f59\play-services-base-17.0.0\AndroidManifest.xml:25:13-37
+92            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+92-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\ratul\.gradle\caches\transforms-2\files-2.1\5ac9ad6f13ea0190a3570ea7a43d9f59\play-services-base-17.0.0\AndroidManifest.xml:26:13-72
+93
+94        <meta-data
+94-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\ratul\.gradle\caches\transforms-2\files-2.1\16f317ddca84a033320a98912f6dc1c5\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+95            android:name="com.google.android.gms.version"
+95-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\ratul\.gradle\caches\transforms-2\files-2.1\16f317ddca84a033320a98912f6dc1c5\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+96            android:value="@integer/google_play_services_version" />
+96-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\ratul\.gradle\caches\transforms-2\files-2.1\16f317ddca84a033320a98912f6dc1c5\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+97    </application>
+98
+99</manifest>

@@ -1,0 +1,200 @@
+{
+  "project_info": {
+    "project_number": "458071601705",
+    "firebase_url": "https://game-tv-engg-firebase.firebaseio.com",
+    "project_id": "game-tv-engg-firebase",
+    "storage_bucket": "game-tv-engg-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:458071601705:android:d840e222a053c7e59ca238",
+        "android_client_info": {
+          "package_name": "tv.game"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "458071601705-5s9fodl08jfbt1gek5as9brek9ngd1su.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.game",
+            "certificate_hash": "17da679e71d0da9d8cb13b81a51a133569f2507e"
+          }
+        },
+        {
+          "client_id": "458071601705-6dg63bi9300onvluv9nb4bov2ueoq1cm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.game",
+            "certificate_hash": "fd6aa334766f2ccdfb198808b6cc88cc676a4f1e"
+          }
+        },
+        {
+          "client_id": "458071601705-8aqfskjvu5fbh463esf0u57cilueqcmt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.game",
+            "certificate_hash": "4a74cfa546c37f983e5653693c279e6cd5805541"
+          }
+        },
+        {
+          "client_id": "458071601705-99pdfde9vb1khhjmv9iiajd1ql6ekvd1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.game",
+            "certificate_hash": "9c0331e971dd619ad28dbe42aa0146f736f6f728"
+          }
+        },
+        {
+          "client_id": "458071601705-9sjr932gn55ldp9lk05c92ddcfvfliid.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.game",
+            "certificate_hash": "2cc8f2db1b93f52bec94eef99d5075f3b7c751f4"
+          }
+        },
+        {
+          "client_id": "458071601705-bg3odo5tivqjok7honhko6fm8ig5vupu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.game",
+            "certificate_hash": "414698608fc93fcf958fb735fbc43d9f980bd2b4"
+          }
+        },
+        {
+          "client_id": "458071601705-brbvh9nmtpo076odf5dvt1vda7r0tn5s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.game",
+            "certificate_hash": "fce0d3b2258b6af8f6407ad427ec8e76b4ca4068"
+          }
+        },
+        {
+          "client_id": "458071601705-ceii429dlafetff9r3sr0mca7sn7ve3u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.game",
+            "certificate_hash": "dc47f0a5ed913cbd6bb4143a346398f11088a047"
+          }
+        },
+        {
+          "client_id": "458071601705-fih38b8rnfevrhf3cgno99mgnjiofjen.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.game",
+            "certificate_hash": "6f5350af0955d4268a814047ca92807aa11bfd87"
+          }
+        },
+        {
+          "client_id": "458071601705-h0h5mqhank4po6ese4nk6hke59v3tpc6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.game",
+            "certificate_hash": "ab2a1043e5f330357c7a4d04956ef5b3458eded3"
+          }
+        },
+        {
+          "client_id": "458071601705-hu6pusdu01nrdi9d0g344jjs3k2c0coc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.game",
+            "certificate_hash": "80a043b05d9b082a3d309e57e17d4e91b0d51252"
+          }
+        },
+        {
+          "client_id": "458071601705-ill74jmlehf3lcr6hns7jdhu1uobp2uk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.game",
+            "certificate_hash": "4fec8ae19f08a4d2246c69639e184f5bbb50ecc2"
+          }
+        },
+        {
+          "client_id": "458071601705-islqa8llt9iacuuo6bcg5jbh1f7hud43.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.game",
+            "certificate_hash": "b4b7030f6cf82f04a95d98f7e68442429df3d1f8"
+          }
+        },
+        {
+          "client_id": "458071601705-n6jqmc84svtlpbfb69pt3fvphpk94klr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.game",
+            "certificate_hash": "93608489d0e0e991f8cef5dd52120bb631819bba"
+          }
+        },
+        {
+          "client_id": "458071601705-pa87pfd22ndu7s159rmvhfn767jcc3kd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.game",
+            "certificate_hash": "cd2fd7359e1242de408322522457ccd8c4c85217"
+          }
+        },
+        {
+          "client_id": "458071601705-pinfovagiklkn5sf69f0i8qtltmpnnls.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.game",
+            "certificate_hash": "e8c6a587b34077fbf5a45f6d0bba5f9604abdaaa"
+          }
+        },
+        {
+          "client_id": "458071601705-sf6811kgropnvpu7b6tmm1ugk39tp9na.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.game",
+            "certificate_hash": "0f9fa60ce26d49310f134239607d0af406dbb92b"
+          }
+        },
+        {
+          "client_id": "458071601705-ttspe6ql5sq9e5odln0l7mri44a3kt80.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.game",
+            "certificate_hash": "c4e0fb6582e20d6bdc6b94aa34e247f5af5cf788"
+          }
+        },
+        {
+          "client_id": "458071601705-uconukpd4cnfco9012tqo8o3j51dpjoe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.game",
+            "certificate_hash": "94c8cb40afe82e58a3c7e03cc1827be951776a2f"
+          }
+        },
+        {
+          "client_id": "458071601705-jdgmenst3c7ccantehjbs4oiis4or0mb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAu2vvqozLo3kJAPD6CGadue_vYa4H6Y5c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "458071601705-jdgmenst3c7ccantehjbs4oiis4or0mb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "458071601705-a677rk2phg9v2a6j8kq332cds6p645up.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "tv.game",
+                "app_store_id": "1510786360"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
