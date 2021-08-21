@@ -1,12 +1,13 @@
-import 'package:bluestack_assignment/Bloc/home_page_bloc/api_repository.dart';
+import 'package:bluestack_assignment/Repositories/api_repository.dart';
 import 'package:bluestack_assignment/Bloc/home_page_bloc/home_page_bloc.dart';
-import 'package:bluestack_assignment/Bloc/login_bloc/auth_repository.dart';
+import 'package:bluestack_assignment/Repositories/auth_repository.dart';
 import 'package:bluestack_assignment/Bloc/login_bloc/form_submission_status.dart';
 import 'package:bluestack_assignment/Bloc/login_bloc/login_bloc.dart';
 import 'package:bluestack_assignment/Bloc/login_bloc/login_event.dart';
 import 'package:bluestack_assignment/Bloc/login_bloc/login_state.dart';
 import 'package:bluestack_assignment/Config/KeyStrings.dart';
 import 'package:bluestack_assignment/localization/language_constants.dart';
+import 'package:bluestack_assignment/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -114,20 +115,14 @@ class LoginScreen extends StatelessWidget {
 
                               Navigator.pop(context);
 
-                              Navigator.of(context).push(MaterialPageRoute(
+                              var args = {
 
-                                  builder: (BuildContext context) => RepositoryProvider(
+                                "user_id":state.username,
+                                "token":state.password,
 
-                                      create:(context) => ApiRepository(),
+                              };
 
-                                      child: BlocProvider(
-
-                                        create: (context) => HomePageBloc(apiRepository: context.read<ApiRepository>(),userId: state.username,token: state.password),
-
-                                        child: HomePage(userID: state.username,token: state.password,),
-
-                                      )
-                                  ) ));
+                              Navigator.pushNamed(context, Routes.homeRoute,arguments: args);
                             }
 
                           },

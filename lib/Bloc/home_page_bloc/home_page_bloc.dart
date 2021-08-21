@@ -1,4 +1,4 @@
-import 'package:bluestack_assignment/Bloc/home_page_bloc/api_repository.dart';
+import 'package:bluestack_assignment/Repositories/api_repository.dart';
 import 'package:bluestack_assignment/Bloc/home_page_bloc/home_page_event.dart';
 import 'package:bluestack_assignment/Bloc/home_page_bloc/home_page_state.dart';
 import 'package:bluestack_assignment/DataModels/RecommendationsDetail.dart';

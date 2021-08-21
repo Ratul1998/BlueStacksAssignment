@@ -1,7 +1,8 @@
-import 'package:bluestack_assignment/Bloc/home_page_bloc/api_repository.dart';
-import 'package:bluestack_assignment/Bloc/login_bloc/auth_repository.dart';
+import 'package:bluestack_assignment/Repositories/api_repository.dart';
+import 'package:bluestack_assignment/Repositories/auth_repository.dart';
 import 'package:bluestack_assignment/Screens/HomePage.dart';
 import 'package:bluestack_assignment/Screens/LoginScreen.dart';
+import 'package:bluestack_assignment/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'Bloc/home_page_bloc/home_page_bloc.dart';
@@ -84,6 +85,9 @@ class _MyAppState extends State<MyApp> {
 
     return MaterialApp(
 
+
+      onGenerateRoute: Routes.generateRoute,
+
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -108,13 +112,6 @@ class _MyAppState extends State<MyApp> {
           }
         }
         return supportedLocales.first;
-      },
-
-      routes: {
-
-        '/login': (context) => RepositoryProvider(create:(context) => AuthRepository(), child: LoginScreen()),
-        '/homepage' : (context) => RepositoryProvider(create:(context) => ApiRepository(), child: HomePage(userID: widget.userID,token: widget.token,))
-
       },
 
       home:  widget.isSignedIn ?

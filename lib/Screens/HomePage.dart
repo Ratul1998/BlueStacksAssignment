@@ -7,6 +7,7 @@ import 'package:bluestack_assignment/DataModels/RecommendationsDetail.dart';
 import 'package:bluestack_assignment/DataModels/UserDetail.dart';
 import 'package:bluestack_assignment/Widgets/favourite_game.dart';
 import 'package:bluestack_assignment/localization/language_constants.dart';
+import 'package:bluestack_assignment/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -126,8 +127,7 @@ class HomeState extends State<HomePage>{
 
             ListTile(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) =>LanguageScreen(forLogin: false,)));
+                Navigator.pushNamed(context,Routes.changeLanguage);
               },
               leading: Icon(
                 Icons.language,
@@ -332,7 +332,7 @@ class HomeState extends State<HomePage>{
     sharedPreferences.remove(SharedPreferenceKey.userName);
     sharedPreferences.remove(SharedPreferenceKey.password);
     Navigator.pop(context);
-    Navigator.of(context).pushNamed('/login');
+    Navigator.pushNamed(context,Routes.login);
   }
 
 }

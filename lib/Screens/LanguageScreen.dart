@@ -9,9 +9,6 @@ import '../main.dart';
 
 class LanguageScreen extends StatefulWidget {
 
-  bool forLogin;
-
-  LanguageScreen({this.forLogin = false});
 
   @override
   _LanguageScreenState createState() => _LanguageScreenState();
