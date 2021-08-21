@@ -12,6 +12,7 @@ class KeyStrings {
   static const String userName = "userName";
   static const String password = "password";
   static const String recommendedForYou = "recommendedForYou";
+  static const String favouriteGames = "favouriteGames";
   static const String languages = "languages";
   static const String japanese = "japanese";
   static const String english = "english";

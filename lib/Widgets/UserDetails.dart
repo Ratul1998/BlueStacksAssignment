@@ -1,17 +1,23 @@
 import 'package:bluestack_assignment/Config/ColorPalettes.dart';
 import 'package:bluestack_assignment/Config/KeyStrings.dart';
 import 'package:bluestack_assignment/DataModels/UserDetail.dart';
-import 'package:bluestack_assignment/Providers/HomePageProvider.dart';
 import 'package:bluestack_assignment/localization/language_constants.dart';
 import 'package:flutter/material.dart';
 
 class UserDetails extends StatelessWidget {
 
  UserDetail userDetail;
- HomePageProvider value;
 
- UserDetails({ this.userDetail, this.value });
+ UserDetails({ this.userDetail});
 
+ double calculatePercentageWin(int totalTournamentPlayed, int totalTournamentWon) {
+
+   double winPercent = (totalTournamentWon/totalTournamentPlayed)*100;
+   double val =  double.parse((winPercent).toStringAsFixed(1));
+   return val;
+
+
+ }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +47,7 @@ class UserDetails extends StatelessWidget {
                     border: Border.all(color: Colors.black54),
                     image: new DecorationImage(
                       fit: BoxFit.fill,
-                      image:  NetworkImage(userDetail.profileUrl),
+                      image:  NetworkImage(userDetail.avatarUrl),
                     )
                 ),
 
@@ -59,7 +65,7 @@ class UserDetails extends StatelessWidget {
 
                   Container(
 
-                    child: Text(userDetail.userName, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),),
+                    child: Text(userDetail.username, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),),
                   ),
 
                   SizedBox(height: 16.0,),
@@ -81,7 +87,7 @@ class UserDetails extends StatelessWidget {
 
                         Container(
 
-                          child: Text(userDetail.eloRating.toString(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue),),
+                          child: Text(userDetail.overall_rating.toString(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue),),
                         ),
 
                         SizedBox(width: 16,),
@@ -130,7 +136,7 @@ class UserDetails extends StatelessWidget {
 
                     children: [
 
-                      Text(userDetail.totalTournamentCount.toString(), style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.white),),
+                      Text(userDetail.tournaments_played.toString(), style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.white),),
 
                       SizedBox(height: 4,),
 
@@ -162,7 +168,7 @@ class UserDetails extends StatelessWidget {
 
                     children: [
 
-                      Text(userDetail.tournamentWon.toString(), style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.white),),
+                      Text(userDetail.tournaments_won.toString(), style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.white),),
 
                       SizedBox(height: 4,),
 
@@ -194,7 +200,7 @@ class UserDetails extends StatelessWidget {
 
                     children: [
 
-                      Text((value.calculatePercentageWin(userDetail.totalTournamentCount, userDetail.tournamentWon).toString() + "%"), style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.white),),
+                      Text((calculatePercentageWin(userDetail.tournaments_played, userDetail.tournaments_won).toString() + "%"), style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.white),),
 
                       SizedBox(height: 4,),
 

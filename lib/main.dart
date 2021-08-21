@@ -1,7 +1,9 @@
+import 'package:bluestack_assignment/Bloc/home_page_bloc/api_repository.dart';
 import 'package:bluestack_assignment/Bloc/login_bloc/auth_repository.dart';
 import 'package:bluestack_assignment/Screens/HomePage.dart';
 import 'package:bluestack_assignment/Screens/LoginScreen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'Bloc/home_page_bloc/home_page_bloc.dart';
 import 'Config/SharedPreferenceKey.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -108,11 +110,25 @@ class _MyAppState extends State<MyApp> {
       routes: {
 
         '/login': (context) => RepositoryProvider(create:(context) => AuthRepository(), child: LoginScreen()),
-        '/homepage' : (context) => HomePage(userID: widget.userID,token: widget.token,)
+        '/homepage' : (context) => RepositoryProvider(create:(context) => ApiRepository(), child: HomePage(userID: widget.userID,token: widget.token,))
 
       },
 
-      home:  widget.isSignedIn ? HomePage(userID: widget.userID,token: widget.token,) : RepositoryProvider(create:(context) => AuthRepository(), child: LoginScreen())  ,
+      home:  widget.isSignedIn ?
+
+      RepositoryProvider(
+
+          create:(context) => ApiRepository(),
+
+          child: BlocProvider(
+
+            create: (context) => HomePageBloc(apiRepository: context.read<ApiRepository>(),userId: widget.userID,token: widget.token),
+
+            child: HomePage(userID: widget.userID,token: widget.token,),
+
+          )
+      ) :
+      RepositoryProvider(create:(context) => AuthRepository(), child: LoginScreen()),
     );
   }
 

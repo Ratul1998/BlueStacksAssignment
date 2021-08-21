@@ -5,7 +5,7 @@ import 'package:bluestack_assignment/Config/SharedPreferenceKey.dart';
 import 'package:bluestack_assignment/DataModels/RecommendationsDetail.dart';
 import 'package:bluestack_assignment/DataModels/UserDetail.dart';
 import 'package:bluestack_assignment/Screens/LoginScreen.dart';
-import 'package:bluestack_assignment/Services/ApiConfig.dart';
+import 'package:bluestack_assignment/Bloc/home_page_bloc/api_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -33,18 +33,18 @@ class HomePageProvider with ChangeNotifier {
 
 
   // Initialize homepage
-  void init (BuildContext context,String userID) async {
+  /*void init (BuildContext context,String userID) async {
 
     this.context = context;
 
-    final userResponse = await ApiConfig.getUserDetail(userID);
+    final userResponse = await ApiRepository.getUserDetail(userID);
 
     if(userResponse.statusCode == ApiResponseCode.SUCCESS) {
       var map = jsonDecode(userResponse.body);
       userDetail = UserDetail.factory(map);
     }
 
-    final recommendationResponse =  await ApiConfig.getRecommendationDetails(10);
+    final recommendationResponse =  await ApiRepository.getRecommendationDetails(10);
 
     if(recommendationResponse.statusCode == ApiResponseCode.SUCCESS) {
 
@@ -84,7 +84,7 @@ class HomePageProvider with ChangeNotifier {
 
     try {
 
-      final response =  await ApiConfig.getNextRecommendationDetails(itemCount, cursor);
+      final response =  await ApiRepository.getNextRecommendationDetails(itemCount, cursor);
 
       if(response.statusCode == ApiResponseCode.SUCCESS) {
 
@@ -131,5 +131,5 @@ class HomePageProvider with ChangeNotifier {
   void dispose() {
    scrollController.dispose();
    super.dispose();
-  }
+  }*/
 }
