@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:bluestack_assignment/Config/ApiStatusKey.dart';
+import 'package:bluestack_assignment/DataModels/RecommendationsDetail.dart';
 import 'package:bluestack_assignment/DataModels/UserDetail.dart';
 import 'package:http/http.dart' as http;
 
@@ -62,34 +63,51 @@ class ApiRepository{
   }
 
   //for fetching first 10 recommended details data
-  Future<http.Response> getRecommendationDetails(int itemCount) async {
+  Future<RecommendationsDetail> getRecommendationDetails(int itemCount) async {
 
-    try {
-      var response = await http.get(Uri.parse(api + "tournaments_list_v2?limit=$itemCount&status=all"),  headers: {
-        HttpHeaders.contentTypeHeader: "application/json",
-      });
+    var response = await http.get(Uri.parse(api + "tournaments_list_v2?limit=$itemCount&status=all"),  headers: {
+      HttpHeaders.contentTypeHeader: "application/json",
+    });
 
-      return response;
-    } catch (exception) {
-      return exception;
+    if(response.statusCode == ApiResponseCode.SUCCESS){
+
+      print(response.body);
+
+      RecommendationsDetail recommendationsDetail = RecommendationsDetail.fromJson(jsonDecode(response.body));
+
+      return recommendationsDetail;
+
     }
+    else{
+
+      throw Exception(response.statusCode);
+
+    }
+
   }
 
   //for fetching next 10 recommended details data with cursor input param
-  Future<http.Response> getNextRecommendationDetails(int itemCount, String cursor) async {
+  Future<RecommendationsDetail> getNextRecommendationDetails(int itemCount, String cursor) async {
 
-    try {
+    var response = await http.get(Uri.parse(api + "tournaments_list_v2?limit=$itemCount&status=all&cursor=$cursor"),  headers: {
+      HttpHeaders.contentTypeHeader: "application/json",
+    });
 
-      var response = await http.get(Uri.parse(api + "tournaments_list_v2?limit=$itemCount&status=all&cursor=$cursor"),  headers: {
-        HttpHeaders.contentTypeHeader: "application/json",
-      });
+    if(response.statusCode == ApiResponseCode.SUCCESS){
 
-      return response;
+      print(response.body);
 
-    } catch (exception) {
+      RecommendationsDetail recommendationsDetail = RecommendationsDetail.fromJson(jsonDecode(response.body));
 
-      return exception;
+      return recommendationsDetail;
+
     }
+    else{
+
+      throw Exception(response.statusCode);
+
+    }
+
   }
 
 

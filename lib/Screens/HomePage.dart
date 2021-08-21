@@ -2,6 +2,7 @@ import 'package:bluestack_assignment/Bloc/home_page_bloc/home_page_bloc.dart';
 import 'package:bluestack_assignment/Bloc/home_page_bloc/home_page_event.dart';
 import 'package:bluestack_assignment/Bloc/home_page_bloc/home_page_state.dart';
 import 'package:bluestack_assignment/Config/KeyStrings.dart';
+import 'package:bluestack_assignment/DataModels/RecommendationsDetail.dart';
 import 'package:bluestack_assignment/DataModels/UserDetail.dart';
 import 'package:bluestack_assignment/Widgets/favourite_game.dart';
 import 'package:bluestack_assignment/localization/language_constants.dart';
@@ -14,8 +15,6 @@ import '../Widgets/UserDetails.dart';
 import 'LanguageScreen.dart';
 
 class HomePage extends StatefulWidget {
-
-  bool init = false;
 
   String userID;
   String token;
@@ -31,6 +30,10 @@ class HomeState extends State<HomePage>{
 
   HomePageBloc homePageBloc;
 
+  bool init = false;
+
+  ScrollController scrollController = ScrollController();
+
   @override
   void initState() {
 
@@ -39,6 +42,21 @@ class HomeState extends State<HomePage>{
     homePageBloc = BlocProvider.of<HomePageBloc>(context);
 
     homePageBloc.add(FetchingData());
+
+    scrollController.addListener(() async {
+
+      if(scrollController.offset >= scrollController.position.maxScrollExtent && !scrollController.position.outOfRange) {
+
+        if(!init){
+
+          homePageBloc.add(ReFetchData());
+          init = true;
+
+        }
+
+      }
+
+    });
 
   }
 
@@ -75,6 +93,12 @@ class HomeState extends State<HomePage>{
                     }
                     else if (state is ErrorState){
                       return Container();
+                    }
+                    else if (state is ReLoadedState){
+                      return drawerData(state.userDetail);
+                    }
+                    else if (state is ReLoadingState){
+                      return drawerData(state.userDetail);
                     }
                     else{
                       return Container();
@@ -151,10 +175,17 @@ class HomeState extends State<HomePage>{
             return loadingWidget();
           }
           else if (state is LoadedState){
-            return dataWidget(state.userDetail);
+            return dataWidget(state.userDetail,state.recommendationsDetail,false);
           }
           else if (state is ErrorState){
             return errorWidget(state.message);
+          }
+          else if (state is ReLoadedState){
+            init = false;
+            return dataWidget(state.userDetail,state.recommendationsDetail,false);
+          }
+          else if (state is ReLoadingState){
+            return dataWidget(state.userDetail,state.recommendationsDetail,true);
           }
           else{
             return Container();
@@ -175,12 +206,13 @@ class HomeState extends State<HomePage>{
 
   }
 
-  Widget dataWidget(UserDetail value){
+  Widget dataWidget(UserDetail userDetail,RecommendationsDetail recommendationsDetail,isReloading){
 
     return Container(
 
       child: SingleChildScrollView(
 
+        controller: scrollController,
 
         child: Column(
 
@@ -190,13 +222,13 @@ class HomeState extends State<HomePage>{
 
                 margin: EdgeInsets.symmetric(horizontal: 16.0),
 
-                child: UserDetails(userDetail: value)
+                child: UserDetails(userDetail: userDetail)
             ),
 
             SizedBox(height: 16,),
 
 
-            (value.favorite_games.length > 0) ? Container(
+            (userDetail.favorite_games.length > 0) ? Container(
 
                 margin: EdgeInsets.symmetric(horizontal: 16.0),
                 alignment: Alignment.centerLeft,
@@ -204,16 +236,16 @@ class HomeState extends State<HomePage>{
                 child: Text(getTranslated(context, KeyStrings.favouriteGames),style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),)
             ) : Container(),
 
-            (value.favorite_games.length > 0) ? Container(
+            (userDetail.favorite_games.length > 0) ? Container(
 
                 height: 140,
 
                 child: ListView.builder(
-                  itemCount: value.favorite_games.length,
+                  itemCount: userDetail.favorite_games.length,
                   scrollDirection: Axis.horizontal,
                   padding: EdgeInsets.symmetric(horizontal: 8),
                   itemBuilder: (context, index) {
-                    return FavouriteGame(name:value.favorite_games.elementAt(index));
+                    return FavouriteGame(name:userDetail.favorite_games.elementAt(index));
                   },
                 )
 
@@ -231,9 +263,9 @@ class HomeState extends State<HomePage>{
 
             SizedBox(height: 16,),
 
-            /*RecommendationList(tournaments:  value.recommendationsDetail.tournaments),
+            RecommendationList(tournaments:  recommendationsDetail.tournaments),
 
-            value.isListUpdating ? CircularProgressIndicator() : Container(),*/
+            isReloading ? CircularProgressIndicator() : Container(),
 
           ],
         ),
