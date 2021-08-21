@@ -30,8 +30,6 @@ class ApiRepository{
 
     var requestURL = userApi + '?' + queryString;
 
-    print(requestURL);
-
     var response = await http.get(Uri.parse(requestURL), headers: {
       HttpHeaders.contentTypeHeader: "application/json",
     });
@@ -39,8 +37,6 @@ class ApiRepository{
 
 
     if(response.statusCode == ApiResponseCode.SUCCESS){
-
-      print(response.body);
 
       UserDetail userDetail = UserDetail.factory(jsonDecode(response.body));
 
@@ -62,7 +58,7 @@ class ApiRepository{
 
   }
 
-  //for fetching first 10 recommended details data
+
   Future<RecommendationsDetail> getRecommendationDetails(int itemCount) async {
 
     var response = await http.get(Uri.parse(api + "tournaments_list_v2?limit=$itemCount&status=all"),  headers: {
@@ -70,8 +66,6 @@ class ApiRepository{
     });
 
     if(response.statusCode == ApiResponseCode.SUCCESS){
-
-      print(response.body);
 
       RecommendationsDetail recommendationsDetail = RecommendationsDetail.fromJson(jsonDecode(response.body));
 
@@ -86,16 +80,16 @@ class ApiRepository{
 
   }
 
-  //for fetching next 10 recommended details data with cursor input param
+
   Future<RecommendationsDetail> getNextRecommendationDetails(int itemCount, String cursor) async {
+
+    print("Cursor  :  " + cursor);
 
     var response = await http.get(Uri.parse(api + "tournaments_list_v2?limit=$itemCount&status=all&cursor=$cursor"),  headers: {
       HttpHeaders.contentTypeHeader: "application/json",
     });
 
     if(response.statusCode == ApiResponseCode.SUCCESS){
-
-      print(response.body);
 
       RecommendationsDetail recommendationsDetail = RecommendationsDetail.fromJson(jsonDecode(response.body));
 
