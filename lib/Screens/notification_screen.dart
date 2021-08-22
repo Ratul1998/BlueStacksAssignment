@@ -1,4 +1,6 @@
 import 'package:bluestack_assignment/Config/KeyStrings.dart';
+import 'package:bluestack_assignment/DataModels/NotificationDetails.dart';
+import 'package:bluestack_assignment/Widgets/NotificationWidget.dart';
 import 'package:bluestack_assignment/localization/language_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,16 @@ class Notifications extends StatelessWidget{
 
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  List<NotificationDetail> notifications = [
+
+    new NotificationDetail(title: "bulabul's Brawl Stars tournament Jun 11, 2021 08:52:00", timestamp: DateTime.now()),
+    new NotificationDetail(title: "Match results for bulabul's Brawl Stars tournament Jun 11, 2021 08:52:00 updated" , timestamp: DateTime(2021,8,22,10,30)),
+    new NotificationDetail(title: "Match results for bulabul's Brawl Stars tournament Jun 11, 2021 08:52:00 updated", timestamp: DateTime(2021,8,22,7,30)),
+    new NotificationDetail(title: "Lookup your team for NishaGuptaTwitter's Free Fire tournament Oct 08, 2020 13:05:00.", timestamp: DateTime(2021,8,21,19,30)),
+    new NotificationDetail(title: "Your user profile has been updated with your new rating of 816 for Brawl Stars. Congratulations on your win", timestamp: DateTime(2021,8,18,7,30)),
+
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +94,13 @@ class Notifications extends StatelessWidget{
 
       ),
 
-      body: SingleChildScrollView(),
+      body: ListView.builder(
+        itemCount: notifications.length,
+        padding: EdgeInsets.symmetric(horizontal: 8),
+        itemBuilder: (context, index) {
+          return NotificationWidget(notificationDetail: notifications.elementAt(index),);
+        },
+      ),
 
     );
 

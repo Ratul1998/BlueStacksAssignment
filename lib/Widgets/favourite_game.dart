@@ -45,7 +45,7 @@ class FavouriteGame extends StatelessWidget{
               color: Colors.white,
               boxShadow: [const BoxShadow(
 
-                color: Colors.black45,
+                color: Colors.black12,
                 blurRadius: 5,
                 spreadRadius: 0
 
