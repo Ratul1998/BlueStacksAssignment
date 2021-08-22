@@ -22,7 +22,9 @@
   "winningPercentage" : "Winning \npercentage",
   "pleaseFillDetails": "Please fill the details",
   "mobileEsportsLive": "Mobile Esports Live Here",
-  "favouriteGames": "Favourite Games"
+  "favouriteGames": "Favourite Games",
+  "goToHome": "Go To Home",
+  "notifications": "Notifications"
 
   
 }
