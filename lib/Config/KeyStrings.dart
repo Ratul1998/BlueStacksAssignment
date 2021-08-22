@@ -4,6 +4,8 @@ class KeyStrings {
   static const String appName = "appName";
   static const String submit = "submit";
   static const String changeLanguage = "changeLanguage";
+  static const String goToHome = "goToHome";
+  static const String notifications = "notifications";
   static const String appBarTitle = "appBarTitle";
   static const String userNameErrorText = "userNameErrorText";
   static const String passwordErrorText = "passwordErrorText";

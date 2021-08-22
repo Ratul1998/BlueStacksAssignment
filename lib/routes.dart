@@ -1,4 +1,5 @@
 import 'package:bluestack_assignment/Screens/LanguageScreen.dart';
+import 'package:bluestack_assignment/Screens/notification_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,6 +47,9 @@ class Routes {
 
       case changeLanguage:
         return MaterialPageRoute(builder: (_) => LanguageScreen());
+
+      case notifications:
+        return MaterialPageRoute(builder: (_) => Notifications());
 
       default:
         return MaterialPageRoute(

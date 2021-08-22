@@ -139,6 +139,19 @@ class HomeState extends State<HomePage>{
 
             ListTile(
               onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, Routes.notifications);
+              },
+              leading: Icon(
+                Icons.notifications,
+                size: 30,
+                color: Colors.black,
+              ),
+              title: Text(getTranslated(context, KeyStrings.notifications)),
+            ),
+
+            ListTile(
+              onTap: () {
                 onLogOut();
               },
               leading: Icon(

@@ -22,7 +22,9 @@
   "winningPercentage" : "勝つ\nパーセンテージ",
   "pleaseFillDetails": "詳細を記入してください",
   "mobileEsportsLive": "モバイルeスポーツはここに住んでいます",
-  "favouriteGames": "好きなゲーム"
+  "favouriteGames": "好きなゲーム",
+  "goToHome": "家に帰る",
+  "notifications": "通知"
 
 
 }
