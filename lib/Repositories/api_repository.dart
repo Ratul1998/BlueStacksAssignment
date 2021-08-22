@@ -40,12 +40,12 @@ class ApiRepository{
 
       UserDetail userDetail = UserDetail.factory(jsonDecode(response.body));
 
-      userDetail.favorite_games.add("Clash of Clans");
-      userDetail.favorite_games.add("Rumble Stars");
-      userDetail.favorite_games.add("PUBG");
-      userDetail.favorite_games.add("COD Mobile");
-      userDetail.favorite_games.add("Free Fire");
-      userDetail.favorite_games.add("Asphalt 9");
+      userDetail.favorite_games.add("Clash of Clans#https://cdn.freelogovectors.net/wp-content/uploads/2019/01/clash_of_clans_logo.png#");
+      userDetail.favorite_games.add("Rumble Stars#https://media.pocketgamer.com/artwork/na-nsfvfkb/rumble-stars-soccer-ios-screenshot-the-games-logo_jpg_640.webp#");
+      userDetail.favorite_games.add("PUBG#https://seeklogo.com/images/P/pubg-mobile-logo-28E182F8A8-seeklogo.com.png#");
+      userDetail.favorite_games.add("COD Mobile#https://vectrostudio.com/wp-content/uploads/2020/03/Download-Call-Of-Duty-Mobile-Logo-Vector.jpg#");
+      userDetail.favorite_games.add("Free Fire#https://www.xtrafondos.com/wallpapers/free-fire-logo-3537.jpg#");
+      userDetail.favorite_games.add("Asphalt 9#https://media.pocketgamer.biz/2021/2/109069/asphalt-9-legends-logo-r225x.jpg#");
 
       return userDetail;
 

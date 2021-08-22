@@ -6,6 +6,14 @@ class FavouriteGame extends StatelessWidget{
   String name;
 
   FavouriteGame({this.name});
+  
+  String getName(String s){
+    return s.split('#').elementAt(0);
+  }
+
+  String getImage(String s){
+    return s.split('#').elementAt(1);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +33,14 @@ class FavouriteGame extends StatelessWidget{
 
             decoration: BoxDecoration(
 
+
+              image: DecorationImage(
+
+                image: NetworkImage(getImage(name)),
+
+                fit: BoxFit.fill,
+
+              ),
               borderRadius: BorderRadius.circular(16),
               color: Colors.white,
               boxShadow: [const BoxShadow(
@@ -43,7 +59,11 @@ class FavouriteGame extends StatelessWidget{
 
             margin: EdgeInsets.only(top: 8),
 
-            child: Text(name,style: TextStyle(color: Colors.black,fontSize: 14),),
+            alignment: Alignment.center,
+
+            width: 96,
+
+            child: Text(getName(name),overflow:TextOverflow.ellipsis ,style: TextStyle(color: Colors.black,fontSize: 14),),
 
           )
 

@@ -344,8 +344,7 @@ class HomeState extends State<HomePage>{
     final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.remove(SharedPreferenceKey.userName);
     sharedPreferences.remove(SharedPreferenceKey.password);
-    Navigator.pop(context);
-    Navigator.pushNamed(context,Routes.login);
+    Navigator.pushNamedAndRemoveUntil(context, Routes.login, (r) => false);
   }
 
 }
