@@ -109,6 +109,7 @@ class LoginScreen extends StatelessWidget {
                             final formStatus = state.formStatus;
 
                             if(formStatus is SubmissionFailed){
+
                               _showSnackBar(context, formStatus.exception.toString());
                             }
                             else if(formStatus is SubmittingSuccess){
@@ -270,7 +271,30 @@ class LoginScreen extends StatelessWidget {
 
   void _showSnackBar(BuildContext context,String message){
 
-    final snackBar = SnackBar(backgroundColor:Colors.white,content: Text(message,style: TextStyle(color: Colors.black87),));
+    final snackBar = SnackBar(
+        backgroundColor:Colors.redAccent,
+        duration: Duration(seconds: 2),
+        content: Container(
+          alignment: Alignment.center,
+          height: 40,
+          child: Row(
+
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+
+            children: [
+
+              Icon(Icons.error_outlined,color: Colors.white,),
+
+              SizedBox(width: 16,),
+
+              Text(message.substring(11),
+                style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.w500),
+              ),
+            ],
+          ),
+        )
+    );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
   }

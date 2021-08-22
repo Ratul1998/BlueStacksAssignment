@@ -21,13 +21,13 @@ class LoginBloc extends Bloc<LoginEvent,LoginState> {
 
     else if (event is PasswordChanged){
 
-      yield state.copyWith(password: event.password);
+      yield state.copyWith(password: event.password, formStatus: InitialFormStatus());
 
     }
 
     else if(event is PasswordVisibilityChanged){
 
-      yield state.copyWith(isPasswordVisible: !state.isPasswordVisible);
+      yield state.copyWith(isPasswordVisible: !state.isPasswordVisible,formStatus: InitialFormStatus());
 
     }
 
@@ -43,6 +43,7 @@ class LoginBloc extends Bloc<LoginEvent,LoginState> {
       }
       catch(e){
         yield state.copyWith(formStatus: SubmissionFailed(e));
+        yield state.copyWith(formStatus: InitialFormStatus());
       }
 
     }
