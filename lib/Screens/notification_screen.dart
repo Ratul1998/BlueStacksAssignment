@@ -27,17 +27,6 @@ class NotifyState extends State<Notifications>{
 
   bool init = false;
 
-/*
-  List<NotificationDetail> notifications = [
-
-    new NotificationDetail(title: "bulabul's Brawl Stars tournament Jun 11, 2021 08:52:00", timestamp: DateTime.now()),
-    new NotificationDetail(title: "Match results for bulabul's Brawl Stars tournament Jun 11, 2021 08:52:00 updated" , timestamp: DateTime(2021,8,22,10,30)),
-    new NotificationDetail(title: "Match results for bulabul's Brawl Stars tournament Jun 11, 2021 08:52:00 updated", timestamp: DateTime(2021,8,22,7,30)),
-    new NotificationDetail(title: "Lookup your team for NishaGuptaTwitter's Free Fire tournament Oct 08, 2020 13:05:00.", timestamp: DateTime(2021,8,21,19,30)),
-    new NotificationDetail(title: "Your user profile has been updated with your new rating of 816 for Brawl Stars. Congratulations on your win", timestamp: DateTime(2021,8,18,7,30)),
-
-  ];*/
-
   @override
   void initState() {
     super.initState();
