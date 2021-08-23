@@ -13,13 +13,15 @@ class NotificationBloc extends Bloc<NotificationEvent,NotificationState>{
 
   NotificationBloc({this.firebaseRepository}) : super(UnInitializedState());
 
+  List<NotificationDetail> notifications = new List();
+
 
   @override
   Stream<NotificationState> mapEventToState(NotificationEvent event) async* {
 
     if(event is FetchNotification){
 
-      yield LoadingState();
+      yield LoadingState(notifications: notifications);
 
       final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
@@ -27,7 +29,16 @@ class NotificationBloc extends Bloc<NotificationEvent,NotificationState>{
 
       try{
 
-        List<NotificationDetail> notifications = await firebaseRepository.getNotifications(token);
+        if(notifications.isEmpty)
+          notifications = await firebaseRepository.getNotifications(token);
+        else{
+
+          List<NotificationDetail> temp = await firebaseRepository.getNextNotifications(token);
+
+          if(temp!=null && temp.isNotEmpty)
+            notifications.addAll(temp);
+
+        }
 
         yield LoadedState(notifications: notifications);
 

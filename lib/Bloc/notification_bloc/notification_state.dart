@@ -4,7 +4,13 @@ abstract class NotificationState{}
 
 class UnInitializedState extends NotificationState{}
 
-class LoadingState extends NotificationState{}
+class LoadingState extends NotificationState{
+
+  List<NotificationDetail> notifications;
+
+  LoadingState({this.notifications});
+
+}
 
 class LoadedState extends NotificationState{
 

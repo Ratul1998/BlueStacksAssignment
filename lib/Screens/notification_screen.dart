@@ -22,6 +22,11 @@ class NotifyState extends State<Notifications>{
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   NotificationBloc notificationBloc;
+
+  ScrollController scrollController = ScrollController();
+
+  bool init = false;
+
 /*
   List<NotificationDetail> notifications = [
 
@@ -40,6 +45,21 @@ class NotifyState extends State<Notifications>{
     notificationBloc = BlocProvider.of<NotificationBloc>(context);
 
     notificationBloc.add(FetchNotification());
+
+    scrollController.addListener(() async {
+
+      if(scrollController.offset >= scrollController.position.maxScrollExtent && !scrollController.position.outOfRange) {
+
+        if(!init){
+
+          notificationBloc.add(FetchNotification());
+          init = true;
+
+        }
+
+      }
+
+    });
 
   }
 
@@ -114,35 +134,73 @@ class NotifyState extends State<Notifications>{
 
       ),
 
-      body: BlocBuilder<NotificationBloc,NotificationState>(
+      body: SingleChildScrollView(
 
-        builder: (context,state){
+        controller: scrollController,
 
-          if(state is UnInitializedState){
-            return Center(child: CircularProgressIndicator(),);
-          }
-          else if(state is LoadingState){
-            return Center(child: CircularProgressIndicator(),);
-          }
-          else if(state is LoadedState){
-            return ListView.builder(
-              itemCount: state.notifications.length,
-              padding: EdgeInsets.symmetric(horizontal: 8),
-              itemBuilder: (context, index) {
-                return NotificationWidget(notificationDetail: state.notifications.elementAt(index),);
-              },
-            );
-          }
-          else if(state is ErrorState){
-            return Center(child: Text(state.message),);
-          }
-          else{
-            return Container();
-          }
+        child: BlocBuilder<NotificationBloc,NotificationState>(
+
+          builder: (context,state){
+
+            if(state is UnInitializedState){
+              return Center(child: CircularProgressIndicator(),);
+            }
+            else if(state is LoadingState){
+
+              if(state.notifications.isEmpty)
+                return Center(child: CircularProgressIndicator(),);
+              else
+                return Column(
+
+                  children: [
+
+                    ListView.builder(
+                      itemCount: state.notifications.length,
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      padding: EdgeInsets.symmetric(horizontal: 8),
+                      itemBuilder: (context, index) {
+                        return NotificationWidget(notificationDetail: state.notifications.elementAt(index),);
+                      },
+                    ),
+
+                    CircularProgressIndicator(),
+
+                  ],
+
+                );
+            }
+            else if(state is LoadedState){
+
+              init = false;
+
+              return Column(
+                children: [
+                  ListView.builder(
+                    itemCount: state.notifications.length,
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    itemBuilder: (context, index) {
+                      return NotificationWidget(notificationDetail: state.notifications.elementAt(index),);
+                    },
+                  ),
+                ],
+              );
 
 
-        },
+            }
+            else if(state is ErrorState){
+              return Center(child: Text(state.message),);
+            }
+            else{
+              return Container();
+            }
 
+
+          },
+
+        ),
       ),
 
     );

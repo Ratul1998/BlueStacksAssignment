@@ -51,16 +51,20 @@ class FirebaseRepository {
 
   };
 
+  List<DocumentSnapshot> documents = new List();
+
   Future<List<NotificationDetail>> getNotifications(String token) async {
 
 
     if(firebaseFirestore==null)
       firebaseFirestore = FirebaseFirestore.instance;
 
-    var response = await firebaseFirestore.collection("notifications").doc(token).collection("messages").get();
+    var response = await firebaseFirestore.collection("notifications").doc(token).collection("messages").orderBy("timestamp",descending: true).limit(10).get();
 
 
-    if(response.docs.isNotEmpty){
+    if(response!=null && response.docs.isNotEmpty){
+
+      documents.addAll(response.docs);
 
       List<NotificationDetail> notifications = new List();
 
@@ -78,6 +82,40 @@ class FirebaseRepository {
     else{
 
       throw Exception("No notifications yet");
+
+    }
+
+  }
+
+  Future<List<NotificationDetail>> getNextNotifications(String token) async {
+
+
+    if(firebaseFirestore==null)
+      firebaseFirestore = FirebaseFirestore.instance;
+
+    var response = await firebaseFirestore.collection("notifications").doc(token).collection("messages").orderBy("timestamp",descending: true).startAfterDocument(documents[documents.length-1]).limit(10).get();
+
+
+    if(response!=null && response.docs.isNotEmpty){
+
+      documents.addAll(response.docs);
+
+      List<NotificationDetail> notifications = new List();
+
+      for(QueryDocumentSnapshot<Map<String,dynamic>> snapshot in response.docs){
+
+        NotificationDetail notificationDetail = NotificationDetail.fromJson(snapshot.data());
+
+        notifications.add(notificationDetail);
+
+      }
+
+      return notifications;
+
+    }
+    else{
+
+      return null;
 
     }
 
