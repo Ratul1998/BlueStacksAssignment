@@ -19,6 +19,8 @@ Future<void> main () async {
 
   WidgetsFlutterBinding.ensureInitialized();
 
+
+  await Firebase.initializeApp();
   //Getting SharedPreferences to check if the user has already logged in or not
   final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 

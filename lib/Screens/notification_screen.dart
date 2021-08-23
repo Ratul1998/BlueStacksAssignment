@@ -1,18 +1,28 @@
+import 'package:bluestack_assignment/Bloc/notification_bloc/notification_bloc.dart';
+import 'package:bluestack_assignment/Bloc/notification_bloc/notification_event.dart';
+import 'package:bluestack_assignment/Bloc/notification_bloc/notification_state.dart';
 import 'package:bluestack_assignment/Config/KeyStrings.dart';
-import 'package:bluestack_assignment/DataModels/NotificationDetails.dart';
 import 'package:bluestack_assignment/Widgets/NotificationWidget.dart';
 import 'package:bluestack_assignment/localization/language_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../routes.dart';
 
 
-class Notifications extends StatelessWidget{
+class Notifications extends StatefulWidget{
 
+  @override
+  NotifyState createState() => NotifyState();
+}
+
+class NotifyState extends State<Notifications>{
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  NotificationBloc notificationBloc;
+/*
   List<NotificationDetail> notifications = [
 
     new NotificationDetail(title: "bulabul's Brawl Stars tournament Jun 11, 2021 08:52:00", timestamp: DateTime.now()),
@@ -21,7 +31,17 @@ class Notifications extends StatelessWidget{
     new NotificationDetail(title: "Lookup your team for NishaGuptaTwitter's Free Fire tournament Oct 08, 2020 13:05:00.", timestamp: DateTime(2021,8,21,19,30)),
     new NotificationDetail(title: "Your user profile has been updated with your new rating of 816 for Brawl Stars. Congratulations on your win", timestamp: DateTime(2021,8,18,7,30)),
 
-  ];
+  ];*/
+
+  @override
+  void initState() {
+    super.initState();
+
+    notificationBloc = BlocProvider.of<NotificationBloc>(context);
+
+    notificationBloc.add(FetchNotification());
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,12 +114,35 @@ class Notifications extends StatelessWidget{
 
       ),
 
-      body: ListView.builder(
-        itemCount: notifications.length,
-        padding: EdgeInsets.symmetric(horizontal: 8),
-        itemBuilder: (context, index) {
-          return NotificationWidget(notificationDetail: notifications.elementAt(index),);
+      body: BlocBuilder<NotificationBloc,NotificationState>(
+
+        builder: (context,state){
+
+          if(state is UnInitializedState){
+            return Center(child: CircularProgressIndicator(),);
+          }
+          else if(state is LoadingState){
+            return Center(child: CircularProgressIndicator(),);
+          }
+          else if(state is LoadedState){
+            return ListView.builder(
+              itemCount: state.notifications.length,
+              padding: EdgeInsets.symmetric(horizontal: 8),
+              itemBuilder: (context, index) {
+                return NotificationWidget(notificationDetail: state.notifications.elementAt(index),);
+              },
+            );
+          }
+          else if(state is ErrorState){
+            return Center(child: Text(state.message),);
+          }
+          else{
+            return Container();
+          }
+
+
         },
+
       ),
 
     );
