@@ -119,7 +119,7 @@ class UserDetails extends StatelessWidget {
                 child: Container(
 
                   alignment: Alignment.center,
-                  padding: EdgeInsets.all(12.0),
+                  padding: EdgeInsets.all(16.0),
 
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(16.0), bottomLeft: Radius.circular(16.0)),
@@ -151,7 +151,7 @@ class UserDetails extends StatelessWidget {
                 child: Container(
 
                   alignment: Alignment.center,
-                  padding: EdgeInsets.all(12.0),
+                  padding: EdgeInsets.all(16.0),
 
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
@@ -183,7 +183,7 @@ class UserDetails extends StatelessWidget {
                 child: Container(
 
                   alignment: Alignment.center,
-                  padding: EdgeInsets.all(12.0),
+                  padding: EdgeInsets.all(16.0),
 
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(topRight: Radius.circular(16.0), bottomRight: Radius.circular(16.0)),

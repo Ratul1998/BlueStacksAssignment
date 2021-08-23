@@ -23,7 +23,6 @@ class Routes {
 
     var data = settings.arguments as Map;
 
-    print(data);
 
     switch (settings.name) {
       case homeRoute:
@@ -51,6 +50,11 @@ class Routes {
         return MaterialPageRoute(builder: (_) => LanguageScreen());
 
       case notifications:
+
+        String username = data['username'];
+        String avatarUrl = data['avatarUrl'];
+        int overallRating = data['overallRating'];
+
         return MaterialPageRoute(builder: (_) => RepositoryProvider(
 
             create:(context) => FirebaseRepository(),
@@ -59,7 +63,7 @@ class Routes {
 
               create: (context) => NotificationBloc(firebaseRepository: context.read<FirebaseRepository>()),
 
-              child: Notifications(),
+              child: Notifications(username: username,avatarUrl: avatarUrl,overallRating: overallRating,),
 
             )
         ));

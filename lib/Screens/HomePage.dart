@@ -37,6 +37,8 @@ class HomeState extends State<HomePage>{
 
   ScrollController scrollController = ScrollController();
 
+  UserDetail userDetail;
+
   @override
   void initState() {
 
@@ -92,6 +94,7 @@ class HomeState extends State<HomePage>{
                       return loadingWidget();
                     }
                     else if (state is LoadedState){
+                      this.userDetail = state.userDetail;
                       return drawerData(state.userDetail);
                     }
                     else if (state is ErrorState){
@@ -139,8 +142,22 @@ class HomeState extends State<HomePage>{
 
             ListTile(
               onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, Routes.notifications);
+
+                if(userDetail!=null){
+
+                  var args = {
+
+                    "username":userDetail.username,
+                    "avatarUrl":userDetail.avatarUrl,
+                    "overallRating":userDetail.overall_rating,
+
+                  };
+
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, Routes.notifications,arguments: args);
+
+                }
+
               },
               leading: Icon(
                 Icons.notifications,

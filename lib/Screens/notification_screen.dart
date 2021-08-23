@@ -2,16 +2,23 @@ import 'package:bluestack_assignment/Bloc/notification_bloc/notification_bloc.da
 import 'package:bluestack_assignment/Bloc/notification_bloc/notification_event.dart';
 import 'package:bluestack_assignment/Bloc/notification_bloc/notification_state.dart';
 import 'package:bluestack_assignment/Config/KeyStrings.dart';
+import 'package:bluestack_assignment/Config/SharedPreferenceKey.dart';
 import 'package:bluestack_assignment/Widgets/NotificationWidget.dart';
 import 'package:bluestack_assignment/localization/language_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../routes.dart';
 
 
 class Notifications extends StatefulWidget{
+
+  String username, avatarUrl;
+  int overallRating;
+
+  Notifications({this.username,this.avatarUrl,this.overallRating});
 
   @override
   NotifyState createState() => NotifyState();
@@ -80,6 +87,25 @@ class NotifyState extends State<Notifications>{
 
           children: [
 
+            Stack(
+              children: [
+
+                drawerData(),
+                Container(
+
+                  alignment: Alignment.bottomRight,
+
+                  child: Image.asset(
+                    'assets/images/controller.png',
+                    height: 120,
+                    width: 120,
+                    color: Colors.white.withOpacity(0.4),
+
+                  ),
+                ),
+              ],
+            ),
+
             ListTile(
               onTap: () {
                 Navigator.pushNamed(context,Routes.changeLanguage);
@@ -107,6 +133,8 @@ class NotifyState extends State<Notifications>{
 
             ListTile(
               onTap: () {
+
+                onLogOut();
 
               },
               leading: Icon(
@@ -196,6 +224,55 @@ class NotifyState extends State<Notifications>{
 
   }
 
+  Widget drawerData(){
+
+    return Container(
+
+      padding: EdgeInsets.only(top: 32, bottom: 16),
+
+      color: Colors.black87,
+
+      child: UserAccountsDrawerHeader(
+
+        decoration: BoxDecoration(
+
+            color: Colors.transparent
+        ),
+
+
+        accountName: Text(widget.username, style: TextStyle(color: Colors.white),),
+
+        accountEmail: Text(widget.overallRating.toString() + " " + getTranslated(context, KeyStrings.eloRating)  , style: TextStyle(color: Colors.white),),
+
+        currentAccountPicture:
+        Container(
+
+          alignment: Alignment.center,
+
+          decoration: new BoxDecoration(
+              border: Border.all(color: Colors.black54),
+              shape: BoxShape.circle,
+              image: new DecorationImage(
+                fit: BoxFit.fill,
+                image: NetworkImage(widget.avatarUrl),
+              )
+          ),
+
+          child: Container() ,
+
+        ),
+
+      ),
+    );
+
+  }
+
+  void onLogOut() async {
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.remove(SharedPreferenceKey.userName);
+    sharedPreferences.remove(SharedPreferenceKey.password);
+    Navigator.pushNamedAndRemoveUntil(context, Routes.login, (r) => false);
+  }
 
 
 }
