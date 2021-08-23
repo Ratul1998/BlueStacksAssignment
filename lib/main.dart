@@ -1,5 +1,6 @@
 import 'package:bluestack_assignment/Repositories/api_repository.dart';
 import 'package:bluestack_assignment/Repositories/auth_repository.dart';
+import 'package:bluestack_assignment/Repositories/firebase_repository.dart';
 import 'package:bluestack_assignment/Screens/HomePage.dart';
 import 'package:bluestack_assignment/Screens/LoginScreen.dart';
 import 'package:bluestack_assignment/routes.dart';
@@ -21,7 +22,8 @@ Future<void> main () async {
 
 
   await Firebase.initializeApp();
-  //Getting SharedPreferences to check if the user has already logged in or not
+
+
   final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
 
