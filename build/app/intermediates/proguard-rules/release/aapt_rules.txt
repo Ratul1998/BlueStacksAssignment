@@ -1,12 +1,18 @@
-# Referenced at E:\blueStackFlutterAssignment-master\build\app\intermediates\merged_manifests\release\AndroidManifest.xml:23
+# Referenced at E:\blueStackFlutterAssignment-master\build\app\intermediates\merged_manifests\release\AndroidManifest.xml:25
 -keep class androidx.core.app.CoreComponentFactory { <init>(); }
-# Referenced at E:\blueStackFlutterAssignment-master\build\app\intermediates\merged_manifests\release\AndroidManifest.xml:92
+# Referenced at E:\blueStackFlutterAssignment-master\build\app\intermediates\merged_manifests\release\AndroidManifest.xml:100
 -keep class com.google.android.gms.common.api.GoogleApiActivity { <init>(); }
-# Referenced at E:\blueStackFlutterAssignment-master\build\app\intermediates\merged_manifests\release\AndroidManifest.xml:70
+# Referenced at E:\blueStackFlutterAssignment-master\build\app\intermediates\merged_manifests\release\AndroidManifest.xml:115
+-keep class com.google.android.gms.measurement.AppMeasurementJobService { <init>(); }
+# Referenced at E:\blueStackFlutterAssignment-master\build\app\intermediates\merged_manifests\release\AndroidManifest.xml:105
+-keep class com.google.android.gms.measurement.AppMeasurementReceiver { <init>(); }
+# Referenced at E:\blueStackFlutterAssignment-master\build\app\intermediates\merged_manifests\release\AndroidManifest.xml:111
+-keep class com.google.android.gms.measurement.AppMeasurementService { <init>(); }
+# Referenced at E:\blueStackFlutterAssignment-master\build\app\intermediates\merged_manifests\release\AndroidManifest.xml:72
 -keep class com.google.firebase.components.ComponentDiscoveryService { <init>(); }
-# Referenced at E:\blueStackFlutterAssignment-master\build\app\intermediates\merged_manifests\release\AndroidManifest.xml:85
+# Referenced at E:\blueStackFlutterAssignment-master\build\app\intermediates\merged_manifests\release\AndroidManifest.xml:93
 -keep class com.google.firebase.provider.FirebaseInitProvider { <init>(); }
-# Referenced at E:\blueStackFlutterAssignment-master\build\app\intermediates\merged_manifests\release\AndroidManifest.xml:28
+# Referenced at E:\blueStackFlutterAssignment-master\build\app\intermediates\merged_manifests\release\AndroidManifest.xml:30
 -keep class com.ratul.bluestack_assignment.MainActivity { <init>(); }
-# Referenced at E:\blueStackFlutterAssignment-master\build\app\intermediates\merged_manifests\release\AndroidManifest.xml:23
+# Referenced at E:\blueStackFlutterAssignment-master\build\app\intermediates\merged_manifests\release\AndroidManifest.xml:25
 -keep class io.flutter.app.FlutterApplication { <init>(); }
