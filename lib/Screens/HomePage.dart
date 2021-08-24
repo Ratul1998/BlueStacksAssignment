@@ -37,8 +37,6 @@ class HomeState extends State<HomePage>{
 
   ScrollController scrollController = ScrollController();
 
-  UserDetail userDetail;
-
   @override
   void initState() {
 
@@ -94,7 +92,6 @@ class HomeState extends State<HomePage>{
                       return loadingWidget();
                     }
                     else if (state is LoadedState){
-                      this.userDetail = state.userDetail;
                       return drawerData(state.userDetail);
                     }
                     else if (state is ErrorState){
@@ -140,32 +137,37 @@ class HomeState extends State<HomePage>{
               title: Text(getTranslated(context, KeyStrings.changeLanguage)),
             ),
 
-            ListTile(
-              onTap: () {
+            BlocBuilder<HomePageBloc,HomePageState>(
 
-                if(userDetail!=null){
+              builder: (context,state){
 
-                  var args = {
+                return ListTile(
+                  onTap: () {
 
-                    "username":userDetail.username,
-                    "avatarUrl":userDetail.avatarUrl,
-                    "overallRating":userDetail.overall_rating,
+                    if(state is LoadedState){
 
-                  };
+                      goToNotifications(state.userDetail);
 
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, Routes.notifications,arguments: args);
+                    }
+                    else if(state is ReLoadedState){
 
-                }
+                      goToNotifications(state.userDetail);
+
+                    }
+
+                  },
+                  leading: Icon(
+                    Icons.notifications,
+                    size: 30,
+                    color: Colors.black,
+                  ),
+                  title: Text(getTranslated(context, KeyStrings.notifications)),
+                );
 
               },
-              leading: Icon(
-                Icons.notifications,
-                size: 30,
-                color: Colors.black,
-              ),
-              title: Text(getTranslated(context, KeyStrings.notifications)),
+
             ),
+
 
             ListTile(
               onTap: () {
@@ -354,6 +356,21 @@ class HomeState extends State<HomePage>{
 
       ),
     );
+
+  }
+
+  void goToNotifications(UserDetail userDetail){
+
+    var args = {
+
+      "username":userDetail.username,
+      "avatarUrl":userDetail.avatarUrl,
+      "overallRating":userDetail.overall_rating,
+
+    };
+
+    Navigator.pop(context);
+    Navigator.pushNamed(context, Routes.notifications,arguments: args);
 
   }
 
