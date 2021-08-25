@@ -3,6 +3,7 @@ import 'package:bluestack_assignment/Bloc/notification_bloc/notification_event.d
 import 'package:bluestack_assignment/Bloc/notification_bloc/notification_state.dart';
 import 'package:bluestack_assignment/Config/KeyStrings.dart';
 import 'package:bluestack_assignment/Config/SharedPreferenceKey.dart';
+import 'package:bluestack_assignment/Widgets/MyAppBar.dart';
 import 'package:bluestack_assignment/Widgets/NotificationWidget.dart';
 import 'package:bluestack_assignment/localization/language_constants.dart';
 import 'package:flutter/cupertino.dart';
@@ -66,20 +67,7 @@ class NotifyState extends State<Notifications>{
 
       key: _scaffoldKey,
 
-      appBar: AppBar(
-
-        centerTitle: true,
-        title: Text(getTranslated(context, KeyStrings.notifications), textAlign: TextAlign.center, style: TextStyle(color: Colors.black),),
-        backgroundColor: Colors.white, elevation: 0.0,
-        leading: IconButton(
-          icon: Image.asset('assets/images/nav_bar_icon.png', height: 12,),
-          onPressed: () {
-            _scaffoldKey.currentState.openDrawer();
-          },
-
-        ),
-
-      ),
+      appBar: MyAppBar(scaffoldKey: _scaffoldKey,appBarTitle: KeyStrings.notifications,),
 
       drawer: Drawer(
 

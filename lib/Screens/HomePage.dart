@@ -8,6 +8,7 @@ import 'package:bluestack_assignment/Config/KeyStrings.dart';
 import 'package:bluestack_assignment/Config/SharedPreferenceKey.dart';
 import 'package:bluestack_assignment/DataModels/RecommendationsDetail.dart';
 import 'package:bluestack_assignment/DataModels/UserDetail.dart';
+import 'package:bluestack_assignment/Widgets/MyAppBar.dart';
 import 'package:bluestack_assignment/Widgets/favourite_game.dart';
 import 'package:bluestack_assignment/localization/language_constants.dart';
 import 'package:bluestack_assignment/routes.dart';
@@ -179,19 +180,7 @@ class HomeState extends State<HomePage>{
         ),
       ),
 
-      appBar: AppBar(
-
-        centerTitle: true,
-        title: Text(getTranslated(context, KeyStrings.appBarTitle), textAlign: TextAlign.center, style: TextStyle(color: Colors.black),),
-        backgroundColor: Colors.white, elevation: 0.0,
-        leading: IconButton(
-          icon: Image.asset('assets/images/nav_bar_icon.png', height: 12,),
-          onPressed: () {
-            _scaffoldKey.currentState.openDrawer();
-          },
-
-        ),
-      ),
+      appBar: MyAppBar(scaffoldKey: _scaffoldKey,appBarTitle: KeyStrings.appBarTitle,),
 
       body: SingleChildScrollView(
 
