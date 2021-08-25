@@ -10,6 +10,7 @@ import 'package:bluestack_assignment/DataModels/UserDetail.dart';
 import 'package:bluestack_assignment/Widgets/MyAppBar.dart';
 import 'package:bluestack_assignment/Widgets/NavigationDrawer.dart';
 import 'package:bluestack_assignment/Widgets/favourite_game.dart';
+import 'package:bluestack_assignment/Widgets/loading_widget.dart';
 import 'package:bluestack_assignment/localization/language_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -117,10 +118,10 @@ class HomeState extends State<HomePage>{
               builder: (context,state){
 
                 if(state is UninitializedState){
-                  return loadingWidget();
+                  return LoadingWidget();
                 }
                 else if(state is UserDetailLoadingState){
-                  return loadingWidget();
+                  return LoadingWidget();
                 }
                 else if (state is UserDetailLoadedState){
                   return userDataWidget(state.userDetail);
@@ -141,12 +142,12 @@ class HomeState extends State<HomePage>{
               builder: (context,state){
 
                 if(state is UninitializedState){
-                  return loadingWidget();
+                  return LoadingWidget();
                 }
                 else if(state is TournamentLoadingState){
 
                   if(state.recommendationsDetail == null)
-                    return loadingWidget();
+                    return LoadingWidget();
                   else
                     return tournamentDataWidget(state.recommendationsDetail,true);
 
@@ -173,19 +174,6 @@ class HomeState extends State<HomePage>{
 
       )
     );
-  }
-
-  Widget loadingWidget(){
-
-    return Container(
-
-      height: 360,
-
-      child: Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
-
   }
 
   Widget userDataWidget(UserDetail userDetail){
