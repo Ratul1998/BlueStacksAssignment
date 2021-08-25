@@ -162,7 +162,7 @@ class NotifyState extends State<Notifications>{
             if(state is UnInitializedState){
               return Center(child: CircularProgressIndicator(),);
             }
-            else if(state is LoadingState){
+            else if(state is NotificationLoadingState){
 
               if(state.notifications.isEmpty)
                 return Center(child: CircularProgressIndicator(),);
@@ -187,7 +187,7 @@ class NotifyState extends State<Notifications>{
 
                 );
             }
-            else if(state is LoadedState){
+            else if(state is NotificationLoadedState){
 
               init = false;
 
@@ -207,7 +207,7 @@ class NotifyState extends State<Notifications>{
 
 
             }
-            else if(state is ErrorState){
+            else if(state is NotificationErrorState){
               return Center(child: Text(state.message),);
             }
             else{

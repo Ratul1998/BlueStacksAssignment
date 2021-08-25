@@ -1,9 +1,9 @@
-import 'package:bluestack_assignment/Bloc/home_page_bloc/home_page_bloc.dart';
-import 'package:bluestack_assignment/Bloc/home_page_bloc/home_page_event.dart';
-import 'package:bluestack_assignment/Bloc/home_page_bloc/home_page_state.dart';
-import 'package:bluestack_assignment/Bloc/tournament_bloc/tournament_bloc.dart';
-import 'package:bluestack_assignment/Bloc/tournament_bloc/tournament_event.dart';
-import 'package:bluestack_assignment/Bloc/tournament_bloc/tournament_state.dart';
+import 'package:bluestack_assignment/Bloc/home_page_bloc/tournament_bloc/tournament_bloc.dart';
+import 'package:bluestack_assignment/Bloc/home_page_bloc/tournament_bloc/tournament_event.dart';
+import 'package:bluestack_assignment/Bloc/home_page_bloc/tournament_bloc/tournament_state.dart';
+import 'package:bluestack_assignment/Bloc/home_page_bloc/user_detail_bloc/user_detail_bloc.dart';
+import 'package:bluestack_assignment/Bloc/home_page_bloc/user_detail_bloc/user_detail_event.dart';
+import 'package:bluestack_assignment/Bloc/home_page_bloc/user_detail_bloc/user_detail_state.dart';
 import 'package:bluestack_assignment/Config/KeyStrings.dart';
 import 'package:bluestack_assignment/Config/SharedPreferenceKey.dart';
 import 'package:bluestack_assignment/DataModels/RecommendationsDetail.dart';
@@ -15,10 +15,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../Widgets/RecommendationList.dart';
 import '../Widgets/UserDetails.dart';
-import 'LanguageScreen.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -90,20 +88,20 @@ class HomeState extends State<HomePage>{
             Stack(
               children: [
 
-                BlocBuilder<HomePageBloc,HomePageState>(
+                BlocBuilder<HomePageBloc,UserDetailState>(
 
                   builder: (context,state){
 
                     if(state is UninitializedState){
                       return loadingWidget();
                     }
-                    else if(state is LoadingState){
+                    else if(state is UserDetailLoadingState){
                       return loadingWidget();
                     }
-                    else if (state is LoadedState){
+                    else if (state is UserDetailLoadedState){
                       return drawerData(state.userDetail);
                     }
-                    else if (state is ErrorState){
+                    else if (state is UserDetailErrorState){
                       return Container();
                     }
                     else{
@@ -140,14 +138,14 @@ class HomeState extends State<HomePage>{
               title: Text(getTranslated(context, KeyStrings.changeLanguage)),
             ),
 
-            BlocBuilder<HomePageBloc,HomePageState>(
+            BlocBuilder<HomePageBloc,UserDetailState>(
 
               builder: (context,state){
 
                 return ListTile(
                   onTap: () {
 
-                    if(state is LoadedState){
+                    if(state is UserDetailLoadedState){
 
                       goToNotifications(state.userDetail);
 
@@ -203,20 +201,20 @@ class HomeState extends State<HomePage>{
 
           children: [
 
-            BlocBuilder<HomePageBloc,HomePageState>(
+            BlocBuilder<HomePageBloc,UserDetailState>(
 
               builder: (context,state){
 
                 if(state is UninitializedState){
                   return loadingWidget();
                 }
-                else if(state is LoadingState){
+                else if(state is UserDetailLoadingState){
                   return loadingWidget();
                 }
-                else if (state is LoadedState){
+                else if (state is UserDetailLoadedState){
                   return userDataWidget(state.userDetail);
                 }
-                else if (state is ErrorState){
+                else if (state is UserDetailErrorState){
                   return errorWidget(state.message);
                 }
                 else{

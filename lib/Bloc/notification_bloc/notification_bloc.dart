@@ -21,7 +21,7 @@ class NotificationBloc extends Bloc<NotificationEvent,NotificationState>{
 
     if(event is FetchNotification){
 
-      yield LoadingState(notifications: notifications);
+      yield NotificationLoadingState(notifications: notifications);
 
       final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
@@ -40,12 +40,12 @@ class NotificationBloc extends Bloc<NotificationEvent,NotificationState>{
 
         }
 
-        yield LoadedState(notifications: notifications);
+        yield NotificationLoadedState(notifications: notifications);
 
       }
       catch(e){
 
-        yield ErrorState(message: e.toString());
+        yield NotificationErrorState(message: e.toString());
 
       }
 

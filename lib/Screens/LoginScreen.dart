@@ -1,5 +1,5 @@
 import 'package:bluestack_assignment/Repositories/api_repository.dart';
-import 'package:bluestack_assignment/Bloc/home_page_bloc/home_page_bloc.dart';
+import 'package:bluestack_assignment/Bloc/home_page_bloc/user_detail_bloc/user_detail_bloc.dart';
 import 'package:bluestack_assignment/Repositories/auth_repository.dart';
 import 'package:bluestack_assignment/Bloc/login_bloc/form_submission_status.dart';
 import 'package:bluestack_assignment/Bloc/login_bloc/login_bloc.dart';
