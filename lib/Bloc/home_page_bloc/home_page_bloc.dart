@@ -11,11 +11,6 @@ class HomePageBloc extends Bloc<HomePageEvent,HomePageState>{
 
   String userId,token;
 
-  String cursor;
-
-  RecommendationsDetail recommendationsDetail;
-
-  UserDetail userDetail;
 
   HomePageBloc({this.apiRepository,this.userId,this.token}) : super(UninitializedState());
 
@@ -24,43 +19,17 @@ class HomePageBloc extends Bloc<HomePageEvent,HomePageState>{
   @override
   Stream<HomePageState> mapEventToState(HomePageEvent event) async* {
 
-    if(event is FetchingData){
+    if(event is FetchingUserData){
 
       yield LoadingState();
 
       try{
-        userDetail = await apiRepository.getUserDetail(userId, token);
-        recommendationsDetail = await apiRepository.getRecommendationDetails(10);
-        cursor = recommendationsDetail.cursor;
-        yield LoadedState(userDetail: userDetail,recommendationsDetail: recommendationsDetail);
+        UserDetail userDetail = await apiRepository.getUserDetail(userId, token);
+        yield LoadedState(userDetail: userDetail);
       }
       catch(e){
         yield ErrorState(message: e.toString());
       }
-
-    }
-
-    if(event is ReFetchData){
-
-      yield ReLoadingState(recommendationsDetail: recommendationsDetail,userDetail: userDetail);
-
-      try{
-
-        RecommendationsDetail temp = await apiRepository.getNextRecommendationDetails(10,cursor);
-
-        cursor = temp.cursor;
-
-        recommendationsDetail.tournaments.addAll(temp.tournaments);
-
-        yield ReLoadedState(recommendationsDetail: recommendationsDetail,userDetail: userDetail);
-
-      }
-      catch(e){
-
-        yield ErrorState(message: e.toString());
-
-      }
-
 
     }
 

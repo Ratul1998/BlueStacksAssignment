@@ -1,6 +1,9 @@
 import 'package:bluestack_assignment/Bloc/home_page_bloc/home_page_bloc.dart';
 import 'package:bluestack_assignment/Bloc/home_page_bloc/home_page_event.dart';
 import 'package:bluestack_assignment/Bloc/home_page_bloc/home_page_state.dart';
+import 'package:bluestack_assignment/Bloc/tournament_bloc/tournament_bloc.dart';
+import 'package:bluestack_assignment/Bloc/tournament_bloc/tournament_event.dart';
+import 'package:bluestack_assignment/Bloc/tournament_bloc/tournament_state.dart';
 import 'package:bluestack_assignment/Config/KeyStrings.dart';
 import 'package:bluestack_assignment/Config/SharedPreferenceKey.dart';
 import 'package:bluestack_assignment/DataModels/RecommendationsDetail.dart';
@@ -33,6 +36,8 @@ class HomeState extends State<HomePage>{
 
   HomePageBloc homePageBloc;
 
+  TournamentBloc tournamentBloc;
+
   bool init = false;
 
   ScrollController scrollController = ScrollController();
@@ -44,7 +49,11 @@ class HomeState extends State<HomePage>{
 
     homePageBloc = BlocProvider.of<HomePageBloc>(context);
 
-    homePageBloc.add(FetchingData());
+    tournamentBloc = BlocProvider.of<TournamentBloc>(context);
+
+    homePageBloc.add(FetchingUserData());
+
+    tournamentBloc.add(FetchTournamentData());
 
     scrollController.addListener(() async {
 
@@ -52,7 +61,7 @@ class HomeState extends State<HomePage>{
 
         if(!init){
 
-          homePageBloc.add(ReFetchData());
+          tournamentBloc.add(FetchTournamentData());
           init = true;
 
         }
@@ -96,12 +105,6 @@ class HomeState extends State<HomePage>{
                     }
                     else if (state is ErrorState){
                       return Container();
-                    }
-                    else if (state is ReLoadedState){
-                      return drawerData(state.userDetail);
-                    }
-                    else if (state is ReLoadingState){
-                      return drawerData(state.userDetail);
                     }
                     else{
                       return Container();
@@ -149,12 +152,6 @@ class HomeState extends State<HomePage>{
                       goToNotifications(state.userDetail);
 
                     }
-                    else if(state is ReLoadedState){
-
-                      goToNotifications(state.userDetail);
-
-                    }
-
                   },
                   leading: Icon(
                     Icons.notifications,
@@ -198,53 +195,7 @@ class HomeState extends State<HomePage>{
         ),
       ),
 
-      body: BlocBuilder<HomePageBloc,HomePageState>(
-
-        builder: (context,state){
-
-          if(state is UninitializedState){
-            return loadingWidget();
-          }
-          else if(state is LoadingState){
-            return loadingWidget();
-          }
-          else if (state is LoadedState){
-            return dataWidget(state.userDetail,state.recommendationsDetail,false);
-          }
-          else if (state is ErrorState){
-            return errorWidget(state.message);
-          }
-          else if (state is ReLoadedState){
-            init = false;
-            return dataWidget(state.userDetail,state.recommendationsDetail,false);
-          }
-          else if (state is ReLoadingState){
-            return dataWidget(state.userDetail,state.recommendationsDetail,true);
-          }
-          else{
-            return Container();
-          }
-
-        },
-
-      ),
-
-    );
-  }
-
-  Widget loadingWidget(){
-
-    return Center(
-      child: CircularProgressIndicator(),
-    );
-
-  }
-
-  Widget dataWidget(UserDetail userDetail,RecommendationsDetail recommendationsDetail,isReloading){
-
-    return Container(
-
-      child: SingleChildScrollView(
+      body: SingleChildScrollView(
 
         controller: scrollController,
 
@@ -252,58 +203,152 @@ class HomeState extends State<HomePage>{
 
           children: [
 
-            Container(
+            BlocBuilder<HomePageBloc,HomePageState>(
 
-                margin: EdgeInsets.symmetric(horizontal: 16.0),
+              builder: (context,state){
 
-                child: UserDetails(userDetail: userDetail)
+                if(state is UninitializedState){
+                  return loadingWidget();
+                }
+                else if(state is LoadingState){
+                  return loadingWidget();
+                }
+                else if (state is LoadedState){
+                  return userDataWidget(state.userDetail);
+                }
+                else if (state is ErrorState){
+                  return errorWidget(state.message);
+                }
+                else{
+                  return Container();
+                }
+
+              },
+
             ),
 
-            SizedBox(height: 16,),
+            BlocBuilder<TournamentBloc,TournamentState>(
+
+              builder: (context,state){
+
+                if(state is UninitializedState){
+                  return loadingWidget();
+                }
+                else if(state is TournamentLoadingState){
+
+                  if(state.recommendationsDetail == null)
+                    return loadingWidget();
+                  else
+                    return tournamentDataWidget(state.recommendationsDetail,true);
 
 
-            (userDetail.favorite_games.length > 0) ? Container(
+                }
+                else if (state is TournamentLoadedState){
+                  return tournamentDataWidget(state.recommendationsDetail,false);
+                }
+                else if (state is TournamentErrorState){
+                  return errorWidget(state.message);
+                }
+                else{
+                  return Container();
+                }
 
-                margin: EdgeInsets.symmetric(horizontal: 16.0),
-                alignment: Alignment.centerLeft,
+              },
 
-                child: Text(getTranslated(context, KeyStrings.favouriteGames),style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),)
-            ) : Container(),
-
-            (userDetail.favorite_games.length > 0) ? Container(
-
-                height: 140,
-
-                child: ListView.builder(
-                  itemCount: userDetail.favorite_games.length,
-                  scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.symmetric(horizontal: 8),
-                  itemBuilder: (context, index) {
-                    return FavouriteGame(name:userDetail.favorite_games.elementAt(index));
-                  },
-                )
-
-            ) : Container(),
-
-            SizedBox(height: 16,),
-
-            Container(
-
-                margin: EdgeInsets.symmetric(horizontal: 16.0),
-                alignment: Alignment.centerLeft,
-
-                child: Text(getTranslated(context, KeyStrings.recommendedForYou),style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),)
             ),
 
-            SizedBox(height: 16,),
-
-            RecommendationList(tournaments:  recommendationsDetail.tournaments),
-
-            isReloading ? CircularProgressIndicator() : Container(),
 
           ],
+
         ),
+
+      )
+    );
+  }
+
+  Widget loadingWidget(){
+
+    return Container(
+
+      height: 360,
+
+      child: Center(
+        child: CircularProgressIndicator(),
       ),
+    );
+
+  }
+
+  Widget userDataWidget(UserDetail userDetail){
+
+    return Container(
+
+      child: Column(
+
+        children: [
+
+          Container(
+
+              margin: EdgeInsets.symmetric(horizontal: 16.0),
+
+              child: UserDetails(userDetail: userDetail)
+          ),
+
+          SizedBox(height: 16,),
+
+          (userDetail.favorite_games.length > 0) ? Container(
+
+              margin: EdgeInsets.symmetric(horizontal: 16.0),
+              alignment: Alignment.centerLeft,
+
+              child: Text(getTranslated(context, KeyStrings.favouriteGames),style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),)
+          ) : Container(),
+
+          (userDetail.favorite_games.length > 0) ? Container(
+
+              height: 140,
+
+              child: ListView.builder(
+                itemCount: userDetail.favorite_games.length,
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                itemBuilder: (context, index) {
+                  return FavouriteGame(name:userDetail.favorite_games.elementAt(index));
+                },
+              )
+
+          ) : Container(),
+
+          SizedBox(height: 16,),
+
+        ],
+      ),
+    );
+
+  }
+
+  Widget tournamentDataWidget(RecommendationsDetail recommendationsDetail,isReloading){
+
+    return Column(
+
+      children: [
+
+        Container(
+
+            margin: EdgeInsets.symmetric(horizontal: 16.0),
+            alignment: Alignment.centerLeft,
+
+            child: Text(getTranslated(context, KeyStrings.recommendedForYou),style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),)
+        ),
+
+        SizedBox(height: 16,),
+
+        RecommendationList(tournaments:  recommendationsDetail.tournaments),
+
+        isReloading ? CircularProgressIndicator() : Container(),
+
+      ],
+
     );
 
   }

@@ -7,32 +7,11 @@ class UninitializedState extends HomePageState{}
 
 class LoadingState extends HomePageState{}
 
-class ReLoadingState extends HomePageState{
-
-  RecommendationsDetail recommendationsDetail;
-
-  UserDetail userDetail;
-
-  ReLoadingState({this.userDetail,this.recommendationsDetail});
-
-}
-
 class LoadedState extends HomePageState{
 
   UserDetail userDetail;
-  RecommendationsDetail recommendationsDetail;
 
-  LoadedState({this.userDetail,this.recommendationsDetail});
-
-}
-
-class ReLoadedState extends HomePageState{
-
-  RecommendationsDetail recommendationsDetail;
-
-  UserDetail userDetail;
-
-  ReLoadedState({this.userDetail,this.recommendationsDetail});
+  LoadedState({this.userDetail});
 
 }
 
