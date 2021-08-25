@@ -1,8 +1,6 @@
-import 'package:bluestack_assignment/Config/KeyStrings.dart';
 import 'package:bluestack_assignment/localization/language_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget{
 

@@ -2,16 +2,13 @@ import 'package:bluestack_assignment/Bloc/notification_bloc/notification_bloc.da
 import 'package:bluestack_assignment/Bloc/notification_bloc/notification_event.dart';
 import 'package:bluestack_assignment/Bloc/notification_bloc/notification_state.dart';
 import 'package:bluestack_assignment/Config/KeyStrings.dart';
-import 'package:bluestack_assignment/Config/SharedPreferenceKey.dart';
 import 'package:bluestack_assignment/Widgets/MyAppBar.dart';
+import 'package:bluestack_assignment/Widgets/NavigationDrawer.dart';
 import 'package:bluestack_assignment/Widgets/NotificationWidget.dart';
 import 'package:bluestack_assignment/localization/language_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../routes.dart';
 
 
 class Notifications extends StatefulWidget{
@@ -69,75 +66,7 @@ class NotifyState extends State<Notifications>{
 
       appBar: MyAppBar(scaffoldKey: _scaffoldKey,appBarTitle: KeyStrings.notifications,),
 
-      drawer: Drawer(
-
-        child: ListView(
-
-          children: [
-
-            Stack(
-              children: [
-
-                drawerData(),
-                Container(
-
-                  alignment: Alignment.bottomRight,
-
-                  child: Image.asset(
-                    'assets/images/controller.png',
-                    height: 120,
-                    width: 120,
-                    color: Colors.white.withOpacity(0.4),
-
-                  ),
-                ),
-              ],
-            ),
-
-            ListTile(
-              onTap: () {
-                Navigator.pushNamed(context,Routes.changeLanguage);
-              },
-              leading: Icon(
-                Icons.language,
-                size: 30,
-                color: Colors.black,
-              ),
-              title: Text(getTranslated(context, KeyStrings.changeLanguage)),
-            ),
-
-            ListTile(
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pop(context);
-              },
-              leading: Icon(
-                Icons.home,
-                size: 30,
-                color: Colors.black,
-              ),
-              title: Text(getTranslated(context, KeyStrings.goToHome)),
-            ),
-
-            ListTile(
-              onTap: () {
-
-                onLogOut();
-
-              },
-              leading: Icon(
-                Icons.logout,
-                size: 30,
-                color: Colors.black,
-              ),
-              title: Text(getTranslated(context, KeyStrings.logOut)),
-            )
-
-          ],
-
-        ),
-
-      ),
+      drawer: NavigationDrawer(username: widget.username,avatarUrl: widget.avatarUrl,overallRating: widget.overallRating,homePage: false,),
 
       body: SingleChildScrollView(
 
@@ -253,13 +182,6 @@ class NotifyState extends State<Notifications>{
       ),
     );
 
-  }
-
-  void onLogOut() async {
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.remove(SharedPreferenceKey.userName);
-    sharedPreferences.remove(SharedPreferenceKey.password);
-    Navigator.pushNamedAndRemoveUntil(context, Routes.login, (r) => false);
   }
 
 

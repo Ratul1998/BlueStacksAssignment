@@ -5,17 +5,15 @@ import 'package:bluestack_assignment/Bloc/home_page_bloc/user_detail_bloc/user_d
 import 'package:bluestack_assignment/Bloc/home_page_bloc/user_detail_bloc/user_detail_event.dart';
 import 'package:bluestack_assignment/Bloc/home_page_bloc/user_detail_bloc/user_detail_state.dart';
 import 'package:bluestack_assignment/Config/KeyStrings.dart';
-import 'package:bluestack_assignment/Config/SharedPreferenceKey.dart';
 import 'package:bluestack_assignment/DataModels/RecommendationsDetail.dart';
 import 'package:bluestack_assignment/DataModels/UserDetail.dart';
 import 'package:bluestack_assignment/Widgets/MyAppBar.dart';
+import 'package:bluestack_assignment/Widgets/NavigationDrawer.dart';
 import 'package:bluestack_assignment/Widgets/favourite_game.dart';
 import 'package:bluestack_assignment/localization/language_constants.dart';
-import 'package:bluestack_assignment/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../Widgets/RecommendationList.dart';
 import '../Widgets/UserDetails.dart';
 
@@ -80,104 +78,28 @@ class HomeState extends State<HomePage>{
       key: _scaffoldKey,
       backgroundColor: Colors.white,
 
-      drawer: Drawer(
+      drawer: BlocBuilder<HomePageBloc,UserDetailState>(
 
-        child:   ListView(
+        builder: (context,state){
 
-          children: [
+          if(state is UninitializedState){
+            return NavigationDrawer(homePage: true,);
+          }
+          else if(state is UserDetailLoadingState){
+            return NavigationDrawer(homePage: true,);
+          }
+          else if (state is UserDetailLoadedState){
+            return NavigationDrawer(username: state.userDetail.username,avatarUrl: state.userDetail.avatarUrl,overallRating: state.userDetail.overall_rating,homePage: true,);
+          }
+          else if (state is UserDetailErrorState){
+            return Container();
+          }
+          else{
+            return Container();
+          }
 
-            Stack(
-              children: [
+        },
 
-                BlocBuilder<HomePageBloc,UserDetailState>(
-
-                  builder: (context,state){
-
-                    if(state is UninitializedState){
-                      return loadingWidget();
-                    }
-                    else if(state is UserDetailLoadingState){
-                      return loadingWidget();
-                    }
-                    else if (state is UserDetailLoadedState){
-                      return drawerData(state.userDetail);
-                    }
-                    else if (state is UserDetailErrorState){
-                      return Container();
-                    }
-                    else{
-                      return Container();
-                    }
-
-                  },
-
-                ),
-                Container(
-
-                  alignment: Alignment.bottomRight,
-
-                  child: Image.asset(
-                    'assets/images/controller.png',
-                    height: 120,
-                    width: 120,
-                    color: Colors.white.withOpacity(0.4),
-
-                  ),
-                ),
-              ],
-            ),
-
-            ListTile(
-              onTap: () {
-                Navigator.pushNamed(context,Routes.changeLanguage);
-              },
-              leading: Icon(
-                Icons.language,
-                size: 30,
-                color: Colors.black,
-              ),
-              title: Text(getTranslated(context, KeyStrings.changeLanguage)),
-            ),
-
-            BlocBuilder<HomePageBloc,UserDetailState>(
-
-              builder: (context,state){
-
-                return ListTile(
-                  onTap: () {
-
-                    if(state is UserDetailLoadedState){
-
-                      goToNotifications(state.userDetail);
-
-                    }
-                  },
-                  leading: Icon(
-                    Icons.notifications,
-                    size: 30,
-                    color: Colors.black,
-                  ),
-                  title: Text(getTranslated(context, KeyStrings.notifications)),
-                );
-
-              },
-
-            ),
-
-
-            ListTile(
-              onTap: () {
-                onLogOut();
-              },
-              leading: Icon(
-                Icons.logout,
-                size: 30,
-                color: Colors.black,
-              ),
-              title: Text(getTranslated(context, KeyStrings.logOut)),
-            )
-          ],
-        ),
       ),
 
       appBar: MyAppBar(scaffoldKey: _scaffoldKey,appBarTitle: KeyStrings.appBarTitle,),
@@ -348,69 +270,5 @@ class HomeState extends State<HomePage>{
 
   }
 
-  Widget drawerData(UserDetail userDetail){
-
-    return Container(
-
-      padding: EdgeInsets.only(top: 32, bottom: 16),
-
-      color: Colors.black87,
-
-      child: UserAccountsDrawerHeader(
-
-        decoration: BoxDecoration(
-
-            color: Colors.transparent
-        ),
-
-
-        accountName: Text(userDetail.username, style: TextStyle(color: Colors.white),),
-
-        accountEmail: Text(userDetail.overall_rating.toString() + " " + getTranslated(context, KeyStrings.eloRating)  , style: TextStyle(color: Colors.white),),
-
-        currentAccountPicture:
-        Container(
-
-          alignment: Alignment.center,
-
-          decoration: new BoxDecoration(
-              border: Border.all(color: Colors.black54),
-              shape: BoxShape.circle,
-              image: new DecorationImage(
-                fit: BoxFit.fill,
-                image: NetworkImage(userDetail.avatarUrl),
-              )
-          ),
-
-          child: Container() ,
-
-        ),
-
-      ),
-    );
-
-  }
-
-  void goToNotifications(UserDetail userDetail){
-
-    var args = {
-
-      "username":userDetail.username,
-      "avatarUrl":userDetail.avatarUrl,
-      "overallRating":userDetail.overall_rating,
-
-    };
-
-    Navigator.pop(context);
-    Navigator.pushNamed(context, Routes.notifications,arguments: args);
-
-  }
-
-  void onLogOut() async {
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.remove(SharedPreferenceKey.userName);
-    sharedPreferences.remove(SharedPreferenceKey.password);
-    Navigator.pushNamedAndRemoveUntil(context, Routes.login, (r) => false);
-  }
 
 }
