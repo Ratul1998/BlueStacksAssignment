@@ -1,6 +1,6 @@
 import 'package:bluestack_assignment/Bloc/notification_bloc/notification_bloc.dart';
 import 'package:bluestack_assignment/Repositories/firebase_repository.dart';
-import 'package:bluestack_assignment/Screens/LanguageScreen.dart';
+import 'package:bluestack_assignment/Screens/language_screen.dart';
 import 'package:bluestack_assignment/Screens/notification_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +10,8 @@ import 'Bloc/home_page_bloc/tournament_bloc/tournament_bloc.dart';
 import 'Bloc/home_page_bloc/user_detail_bloc/user_detail_bloc.dart';
 import 'Repositories/api_repository.dart';
 import 'Repositories/auth_repository.dart';
-import 'Screens/HomePage.dart';
-import 'Screens/LoginScreen.dart';
+import 'Screens/home_page.dart';
+import 'Screens/login_screen.dart';
 
 class Routes {
 

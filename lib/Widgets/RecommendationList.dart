@@ -1,5 +1,5 @@
 import 'package:bluestack_assignment/DataModels/Tournament.dart';
-import 'package:bluestack_assignment/Widgets/ListItem.dart';
+import 'package:bluestack_assignment/Widgets/list_item.dart';
 import 'package:flutter/material.dart';
 
 class RecommendationList extends StatelessWidget {

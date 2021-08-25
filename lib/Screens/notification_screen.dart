@@ -2,11 +2,11 @@ import 'package:bluestack_assignment/Bloc/notification_bloc/notification_bloc.da
 import 'package:bluestack_assignment/Bloc/notification_bloc/notification_event.dart';
 import 'package:bluestack_assignment/Bloc/notification_bloc/notification_state.dart';
 import 'package:bluestack_assignment/Config/KeyStrings.dart';
-import 'package:bluestack_assignment/Widgets/MyAppBar.dart';
-import 'package:bluestack_assignment/Widgets/NavigationDrawer.dart';
-import 'package:bluestack_assignment/Widgets/NotificationWidget.dart';
+import 'package:bluestack_assignment/Widgets/my_app_bar.dart';
+import 'package:bluestack_assignment/Widgets/navigation_drawer.dart';
+import 'package:bluestack_assignment/Widgets/notification_widget.dart';
+import 'package:bluestack_assignment/Widgets/error_widget.dart';
 import 'package:bluestack_assignment/Widgets/loading_widget.dart';
-import 'package:bluestack_assignment/localization/language_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -126,7 +126,7 @@ class NotifyState extends State<Notifications>{
 
             }
             else if(state is NotificationErrorState){
-              return Center(child: Text(state.message),);
+              return MyErrorWidget(message: state.message,);
             }
             else{
               return Container();

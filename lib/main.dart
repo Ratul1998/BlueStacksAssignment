@@ -1,8 +1,8 @@
 import 'package:bluestack_assignment/Repositories/api_repository.dart';
 import 'package:bluestack_assignment/Repositories/auth_repository.dart';
 import 'package:bluestack_assignment/Repositories/firebase_repository.dart';
-import 'package:bluestack_assignment/Screens/HomePage.dart';
-import 'package:bluestack_assignment/Screens/LoginScreen.dart';
+import 'package:bluestack_assignment/Screens/home_page.dart';
+import 'package:bluestack_assignment/Screens/login_screen.dart';
 import 'package:bluestack_assignment/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
