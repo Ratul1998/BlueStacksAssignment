@@ -98,7 +98,7 @@ class UserDetails extends StatelessWidget {
 
                               icon: Icon(Icons.check),onPressed: () {
 
-                                  BlocProvider.of<HomePageBloc>(context).add(ChangeUserName(userName: editedUsername));
+                                  BlocProvider.of<HomePageBloc>(context).add(ChangeUserName(userName: (editedUsername!=null) ? editedUsername : userDetail.username));
 
                               } ,
                             ),
@@ -117,7 +117,7 @@ class UserDetails extends StatelessWidget {
 
                                   padding: EdgeInsets.symmetric(horizontal: 8),
 
-                                  icon: Icon(Icons.edit),
+                                  icon: Icon(Icons.edit,size: 20,color: Colors.blueAccent,),
 
                                   onPressed: () => BlocProvider.of<HomePageBloc>(context).add(UserTextFieldVisible(visible: true)),
 
