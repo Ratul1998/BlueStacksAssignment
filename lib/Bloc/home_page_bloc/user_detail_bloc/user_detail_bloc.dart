@@ -11,6 +11,7 @@ class HomePageBloc extends Bloc<UserDetailEvent,UserDetailState>{
 
   String userId,token;
 
+  UserDetail userDetail;
 
   HomePageBloc({this.apiRepository,this.userId,this.token}) : super(UninitializedState());
 
@@ -24,7 +25,7 @@ class HomePageBloc extends Bloc<UserDetailEvent,UserDetailState>{
       yield UserDetailLoadingState();
 
       try{
-        UserDetail userDetail = await apiRepository.getUserDetail(userId, token);
+        userDetail = await apiRepository.getUserDetail(userId, token);
         yield UserDetailLoadedState(userDetail: userDetail);
       }
       catch(e){
@@ -32,6 +33,21 @@ class HomePageBloc extends Bloc<UserDetailEvent,UserDetailState>{
       }
 
     }
+
+    else if(event is ChangeUserName){
+
+      userDetail.username = event.userName;
+
+      yield UserDetailLoadedState(userDetail: userDetail);
+
+    }
+
+    else if(event is UserTextFieldVisible){
+
+      yield UserDetailLoadedState(userDetail: userDetail,isInEditMode: event.visible);
+
+    }
+
 
   }
 

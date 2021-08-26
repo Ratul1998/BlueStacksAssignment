@@ -1,28 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+    <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cadf424-11a1-4c37-a1b9-8b6411f5d26a" name="Default Changelist" comment="git ignore" />
+    <list default="true" id="1cadf424-11a1-4c37-a1b9-8b6411f5d26a" name="Default Changelist" comment="git ignore">
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/last_build_run.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/last_build_run.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Bloc/home_page_bloc/tournament_bloc/tournament_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Bloc/home_page_bloc/tournament_bloc/tournament_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Bloc/home_page_bloc/tournament_bloc/tournament_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Bloc/home_page_bloc/tournament_bloc/tournament_state.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Bloc/home_page_bloc/user_detail_bloc/user_detail_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Bloc/home_page_bloc/user_detail_bloc/user_detail_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Bloc/home_page_bloc/user_detail_bloc/user_detail_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Bloc/home_page_bloc/user_detail_bloc/user_detail_event.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Bloc/home_page_bloc/user_detail_bloc/user_detail_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Bloc/home_page_bloc/user_detail_bloc/user_detail_state.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/DataModels/UserDetail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/DataModels/UserDetail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Screens/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Screens/home_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Widgets/user_details.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Widgets/user_details.dart" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="changes3" />
+        <entry key="$PROJECT_DIR$" value="gitignore" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1xGN06hBQzJgEQ2qQiJN5ccZU28" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RunManager">
     <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
@@ -30,10 +61,40 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="git ignore">
+      <created>1629968370976</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1629968370976</updated>
+    </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1cadf424-11a1-4c37-a1b9-8b6411f5d26a" name="Default Changelist" comment="git ignore" />
+      <created>1629977240681</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1629977240681</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="git ignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="git ignore" />
   </component>
 </project>

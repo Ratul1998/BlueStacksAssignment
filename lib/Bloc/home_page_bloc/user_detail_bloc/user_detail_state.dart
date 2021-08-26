@@ -11,7 +11,9 @@ class UserDetailLoadedState extends UserDetailState{
 
   UserDetail userDetail;
 
-  UserDetailLoadedState({this.userDetail});
+  bool isInEditMode;
+
+  UserDetailLoadedState({this.userDetail,this.isInEditMode = false});
 
 }
 

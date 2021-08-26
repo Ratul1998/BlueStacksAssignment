@@ -27,7 +27,7 @@ class TournamentBloc extends Bloc<TournamentEvent,TournamentState> {
 
           recommendationsDetail = await apiRepository.getRecommendationDetails(10);
           cursor = recommendationsDetail.cursor;
-          yield TournamentLoadedState(recommendationsDetail: recommendationsDetail);
+          yield TournamentLoadedState(recommendationsDetail: recommendationsDetail,cursor: cursor);
 
         }
         else{
@@ -38,7 +38,7 @@ class TournamentBloc extends Bloc<TournamentEvent,TournamentState> {
 
           recommendationsDetail.tournaments.addAll(temp.tournaments);
 
-          yield TournamentLoadedState(recommendationsDetail: recommendationsDetail);
+          yield TournamentLoadedState(recommendationsDetail: recommendationsDetail,cursor: cursor);
 
         }
 

@@ -1,14 +1,23 @@
+import 'package:bluestack_assignment/Bloc/home_page_bloc/user_detail_bloc/user_detail_bloc.dart';
+import 'package:bluestack_assignment/Bloc/home_page_bloc/user_detail_bloc/user_detail_event.dart';
 import 'package:bluestack_assignment/Config/ColorPalettes.dart';
 import 'package:bluestack_assignment/Config/KeyStrings.dart';
 import 'package:bluestack_assignment/DataModels/UserDetail.dart';
 import 'package:bluestack_assignment/localization/language_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserDetails extends StatelessWidget {
 
  UserDetail userDetail;
 
- UserDetails({ this.userDetail});
+ bool isInEditMode;
+
+ String editedUsername;
+
+ final _formKey = GlobalKey<FormState>();
+
+ UserDetails({ this.userDetail,this.isInEditMode});
 
  double calculatePercentageWin(int totalTournamentPlayed, int totalTournamentWon) {
 
@@ -57,52 +66,103 @@ class UserDetails extends StatelessWidget {
 
               SizedBox(width: 16,),
 
-              Column(
+              Expanded(
 
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                child: Column(
 
-                  Container(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
 
-                    child: Text(userDetail.username, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),),
-                  ),
+                  (isInEditMode) ? Container(
 
-                  SizedBox(height: 16.0,),
+                    height: 80,
 
-                  Container(
+                    child: TextFormField(
 
-                    padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
-                    decoration: BoxDecoration(
+                          key: _formKey,
 
-                      borderRadius: BorderRadius.all(Radius.circular(48.0)),
-                      border: Border.all(color: Colors.blue)
+                          onChanged: (value)=> editedUsername = value,
 
+                          initialValue: userDetail.username,
 
+                          validator: (value) => (value.length >=3 && value.length<=10) ? null : getTranslated(context, KeyStrings.userNameErrorText),
 
-                    ),
-                    child: Row(
+                          decoration: InputDecoration(
 
-                      children: [
+                            labelText: getTranslated(context, KeyStrings.userName),
 
-                        Container(
+                            prefixIcon: Icon(Icons.person),
 
-                          child: Text(userDetail.overall_rating.toString(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue),),
+                            suffixIcon: IconButton(
+
+                              icon: Icon(Icons.check),onPressed: () {
+
+                                  BlocProvider.of<HomePageBloc>(context).add(ChangeUserName(userName: editedUsername));
+
+                              } ,
+                            ),
+
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
+
+                          )),
+                  ) : Container(
+
+                          child: Row(
+
+                            children: [
+                              Text(userDetail.username, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),),
+
+                              IconButton(
+
+                                  padding: EdgeInsets.symmetric(horizontal: 8),
+
+                                  icon: Icon(Icons.edit),
+
+                                  onPressed: () => BlocProvider.of<HomePageBloc>(context).add(UserTextFieldVisible(visible: true)),
+
+                              ),
+
+                            ],
+                          ),
                         ),
 
-                        SizedBox(width: 16,),
+                    SizedBox(height: 16.0,),
 
-                        Container(
+                    Container(
 
-                          child: Text(getTranslated(context, KeyStrings.eloRating), style: TextStyle(color: Colors.grey),),
-                        ),
+                      padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+                      decoration: BoxDecoration(
 
-                      ],
+                        borderRadius: BorderRadius.all(Radius.circular(48.0)),
+                        border: Border.all(color: Colors.blue)
+
+
+
+                      ),
+                      child: Row(
+
+                        children: [
+
+                          Container(
+
+                            child: Text(userDetail.overall_rating.toString(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue),),
+                          ),
+
+                          SizedBox(width: 16,),
+
+                          Container(
+
+                            child: Text(getTranslated(context, KeyStrings.eloRating), style: TextStyle(color: Colors.grey),),
+                          ),
+
+                        ],
+                      ),
                     ),
-                  ),
 
 
-                ],
+                  ],
+                ),
               ),
 
             ],

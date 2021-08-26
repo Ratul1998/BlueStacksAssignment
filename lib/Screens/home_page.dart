@@ -125,7 +125,7 @@ class HomeState extends State<HomePage>{
                   return LoadingWidget();
                 }
                 else if (state is UserDetailLoadedState){
-                  return userDataWidget(state.userDetail);
+                  return userDataWidget(state.userDetail,state.isInEditMode);
                 }
                 else if (state is UserDetailErrorState){
                   return MyErrorWidget(message: state.message,);
@@ -177,7 +177,7 @@ class HomeState extends State<HomePage>{
     );
   }
 
-  Widget userDataWidget(UserDetail userDetail){
+  Widget userDataWidget(UserDetail userDetail,bool isInEditMode){
 
     return Container(
 
@@ -189,7 +189,7 @@ class HomeState extends State<HomePage>{
 
               margin: EdgeInsets.symmetric(horizontal: 16.0),
 
-              child: UserDetails(userDetail: userDetail)
+              child: UserDetails(userDetail: userDetail,isInEditMode: isInEditMode,)
           ),
 
           SizedBox(height: 16,),

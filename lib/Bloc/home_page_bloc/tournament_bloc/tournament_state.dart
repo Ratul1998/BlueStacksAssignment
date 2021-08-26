@@ -17,7 +17,9 @@ class TournamentLoadedState extends TournamentState{
 
   RecommendationsDetail recommendationsDetail;
 
-  TournamentLoadedState({this.recommendationsDetail});
+  String cursor;
+
+  TournamentLoadedState({this.recommendationsDetail,this.cursor});
 
 }
 
