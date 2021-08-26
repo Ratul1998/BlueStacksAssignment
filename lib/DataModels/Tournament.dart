@@ -1,7 +1,6 @@
 class Tournament {
 
-  String name,coverUrl,gameName,details,rules;
-  DateTime startDate;
+  String name,coverUrl,gameName,details,rules,game_icon_url;
 
   Tournament({
     this.name,
@@ -9,7 +8,7 @@ class Tournament {
     this.gameName,
     this.details,
     this.rules,
-    this.startDate,
+    this.game_icon_url,
   });
 
   factory Tournament.fromJson(Map<String, dynamic> json) {
@@ -20,7 +19,7 @@ class Tournament {
       name: json['name'],
       coverUrl:  json['cover_url'],
       gameName:  json['game_name'],
-      startDate: DateTime.fromMillisecondsSinceEpoch(int.parse(json['start_date'])),
+      game_icon_url: json['game_icon_url'],
       details:  json['details'],
       rules:  json['rules'],
     );

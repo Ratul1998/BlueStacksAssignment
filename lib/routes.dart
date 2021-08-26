@@ -1,7 +1,9 @@
 import 'package:bluestack_assignment/Bloc/notification_bloc/notification_bloc.dart';
+import 'package:bluestack_assignment/DataModels/Tournament.dart';
 import 'package:bluestack_assignment/Repositories/firebase_repository.dart';
 import 'package:bluestack_assignment/Screens/language_screen.dart';
 import 'package:bluestack_assignment/Screens/notification_screen.dart';
+import 'package:bluestack_assignment/Screens/tournament_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,6 +21,7 @@ class Routes {
   static const String login = '/login';
   static const String changeLanguage = '/changeLanguage';
   static const String notifications = '/notification';
+  static const String tournament = '/tournament';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
 
@@ -54,6 +57,10 @@ class Routes {
 
       case changeLanguage:
         return MaterialPageRoute(builder: (_) => LanguageScreen());
+
+      case tournament:
+        Tournament tournament = Tournament.fromJson(data);
+        return MaterialPageRoute(builder: (_) => TournamentScreen(tournament: tournament,));
 
       case notifications:
 
