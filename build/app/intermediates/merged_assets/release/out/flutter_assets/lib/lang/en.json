@@ -24,7 +24,9 @@
   "mobileEsportsLive": "Mobile Esports Live Here",
   "favouriteGames": "Favourite Games",
   "goToHome": "Go To Home",
-  "notifications": "Notifications"
+  "notifications": "Notifications",
+  "tournamentDetails": "Tournament Details",
+  "tournamentRules": "Tournament Rules"
 
   
 }

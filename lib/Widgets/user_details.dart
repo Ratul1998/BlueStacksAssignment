@@ -78,34 +78,42 @@ class UserDetails extends StatelessWidget {
 
                     height: 80,
 
-                    child: TextFormField(
+                    child: Form(
 
-                          key: _formKey,
+                      key: _formKey,
 
-                          onChanged: (value)=> editedUsername = value,
+                      child: TextFormField(
 
-                          initialValue: userDetail.username,
 
-                          validator: (value) => (value.length >=3 && value.length<=10) ? null : getTranslated(context, KeyStrings.userNameErrorText),
 
-                          decoration: InputDecoration(
+                            onChanged: (value)=> editedUsername = value,
 
-                            labelText: getTranslated(context, KeyStrings.userName),
+                            initialValue: userDetail.username,
 
-                            prefixIcon: Icon(Icons.person),
+                            validator: (value) => (value.length >=3) ? null : getTranslated(context, KeyStrings.userNameErrorText),
 
-                            suffixIcon: IconButton(
+                            decoration: InputDecoration(
 
-                              icon: Icon(Icons.check),onPressed: () {
+                              labelText: getTranslated(context, KeyStrings.userName),
 
-                                  BlocProvider.of<HomePageBloc>(context).add(ChangeUserName(userName: (editedUsername!=null) ? editedUsername : userDetail.username));
+                              prefixIcon: Icon(Icons.person),
 
-                              } ,
-                            ),
+                              suffixIcon: IconButton(
 
-                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
+                                icon: Icon(Icons.check),onPressed: () {
 
-                          )),
+                                  if(_formKey.currentState.validate())
+                                    BlocProvider.of<HomePageBloc>(context).add(ChangeUserName(userName: (editedUsername!=null) ? editedUsername : userDetail.username));
+
+                                } ,
+                              ),
+
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
+
+                            )),
+                    ),
+
+
                   ) : Container(
 
                           child: Row(

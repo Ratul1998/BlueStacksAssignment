@@ -25,23 +25,37 @@ class TournamentState extends State<TournamentScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+
       body: NestedScrollView(
+
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+
           return <Widget>[
+
             SliverAppBar(
+
               expandedHeight: 200.0,
+
               floating: false,
+
               pinned: true,
+
               flexibleSpace: FlexibleSpaceBar(
+
                   centerTitle: true,
+
                   collapseMode: CollapseMode.pin,
+
                   titlePadding: EdgeInsets.all(0),
+
                   title: Container(
 
                     color: Colors.black54,
 
                     height: 56,
+
                     width: double.maxFinite,
+
                     alignment: Alignment.center,
 
                     padding: EdgeInsets.all(8),
@@ -49,22 +63,34 @@ class TournamentState extends State<TournamentScreen> {
                     child: Text(widget.tournament.name,
 
                         textAlign: TextAlign.center,
+
                         style: TextStyle(
+
                           color: Colors.white,
+
                           fontSize: 16.0,
+
                         )),
                   ),
                   background: Image.network(
+
                     widget.tournament.coverUrl,
+
                     fit: BoxFit.cover,
+
                   )),
             ),
 
             SliverPersistentHeader(
+
               delegate: _SliverAppBarDelegate(
+
                 gameName: widget.tournament.gameName,
+
                 imageURL: widget.tournament.game_icon_url,
+
               ),
+
               pinned: true,
             ),
 
@@ -97,24 +123,37 @@ class TournamentState extends State<TournamentScreen> {
 
                 child: Column(
 
-                    children: split(widget.tournament.details).map((e) => Row(
+                    children: split(widget.tournament.details).map((e) {
 
-                      children: [
+                      if(e.isNotEmpty){
 
-                        Icon(Icons.circle,size: 14,color: Colors.black87,),
+                        return Row(
 
-                        Expanded(
+                          crossAxisAlignment: CrossAxisAlignment.start,
 
-                          child: Container(
+                          children: [
 
-                            margin: EdgeInsets.only(left: 16,top: 16),
+                            Container(margin:EdgeInsets.only(top: 20),child: Icon(Icons.circle,size: 14,color: Colors.black87,)),
 
-                            child: Text(e,style: TextStyle(color: Colors.black54,fontSize: 20),),),
-                        )
+                            Expanded(
 
-                      ],
+                              child: Container(
 
-                    )).toList()
+                                margin: EdgeInsets.only(left: 16,top: 16),
+
+                                child: Text(e.substring(3),style: TextStyle(color: Colors.black54,fontSize: 20),),),
+                            )
+
+                          ],
+
+                        );
+
+                      }
+                      else{
+                        return Container();
+                      }
+
+                    }).toList()
 
                 ),
               ),
@@ -148,9 +187,11 @@ class TournamentState extends State<TournamentScreen> {
 
                         return Row(
 
+                          crossAxisAlignment: CrossAxisAlignment.start,
+
                           children: [
 
-                            Icon(Icons.circle,size: 14,color: Colors.black87,),
+                            Container(margin:EdgeInsets.only(top: 20),child: Icon(Icons.circle,size: 14,color: Colors.black87,)),
 
                             Expanded(
 

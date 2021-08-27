@@ -3,7 +3,7 @@
   "appName" : "appName",
   "submit" : "SUBMIT",
   "appBarTitle" : "Flyingwolf",
-  "userNameErrorText" : "Username should be of min 3 characters and max 10",
+  "userNameErrorText" : "Username should be of min 3",
   "passwordErrorText" : "Password should be of min 3 characters and max 10",
   "invalidPassword" : "Invalid Password",
   "userNotFound" : "User not found",
