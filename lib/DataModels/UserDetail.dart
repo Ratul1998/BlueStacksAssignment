@@ -1,12 +1,12 @@
 class UserDetail {
 
-  final String username,userId,gender,highestRatingGamePkg,avatarUrl,user_handler,email,profile_url;
+  String username,userId,gender,highestRatingGamePkg,avatarUrl,user_handler,email,profile_url;
 
-  final int matches_won,highest_rating,win_percentage,tournaments_played,matches_played,tournaments_won,current_level,current_xp,overall_rating;
+  int matches_won,highest_rating,win_percentage,tournaments_played,matches_played,tournaments_won,current_level,current_xp,overall_rating;
 
-  final bool favorite_games_selected;
+  bool favorite_games_selected;
 
-  final List<String> favorite_games;
+  List<String> favorite_games;
 
   UserDetail({this.username, this.userId, this.gender,
     this.highestRatingGamePkg, this.avatarUrl, this.user_handler,

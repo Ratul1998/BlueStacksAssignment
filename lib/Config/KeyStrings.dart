@@ -25,5 +25,7 @@ class KeyStrings {
   static const String tournamentsWon = "tournamentsWon";
   static const String winningPercentage = "winningPercentage";
   static const String mobileEsportsLive = "mobileEsportsLive";
+  static const String tournamentDetails = "tournamentDetails";
+  static const String tournamentRules = "tournamentRules";
 
 }

@@ -1,5 +1,5 @@
 import 'package:bluestack_assignment/Config/KeyStrings.dart';
-import 'package:bluestack_assignment/Widgets/LangugaeWidget.dart';
+import 'package:bluestack_assignment/Widgets/langugae_widget.dart';
 import 'package:bluestack_assignment/localization/language_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

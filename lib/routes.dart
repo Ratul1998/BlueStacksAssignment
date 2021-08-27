@@ -1,16 +1,19 @@
 import 'package:bluestack_assignment/Bloc/notification_bloc/notification_bloc.dart';
+import 'package:bluestack_assignment/DataModels/Tournament.dart';
 import 'package:bluestack_assignment/Repositories/firebase_repository.dart';
-import 'package:bluestack_assignment/Screens/LanguageScreen.dart';
+import 'package:bluestack_assignment/Screens/language_screen.dart';
 import 'package:bluestack_assignment/Screens/notification_screen.dart';
+import 'package:bluestack_assignment/Screens/tournament_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'Bloc/home_page_bloc/home_page_bloc.dart';
+import 'Bloc/home_page_bloc/tournament_bloc/tournament_bloc.dart';
+import 'Bloc/home_page_bloc/user_detail_bloc/user_detail_bloc.dart';
 import 'Repositories/api_repository.dart';
 import 'Repositories/auth_repository.dart';
-import 'Screens/HomePage.dart';
-import 'Screens/LoginScreen.dart';
+import 'Screens/home_page.dart';
+import 'Screens/login_screen.dart';
 
 class Routes {
 
@@ -18,6 +21,7 @@ class Routes {
   static const String login = '/login';
   static const String changeLanguage = '/changeLanguage';
   static const String notifications = '/notification';
+  static const String tournament = '/tournament';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
 
@@ -34,10 +38,15 @@ class Routes {
 
             create:(context) => ApiRepository(),
 
-            child: BlocProvider(
+            child: MultiBlocProvider(
 
-              create: (context) => HomePageBloc(apiRepository: context.read<ApiRepository>(),userId: userID,token: token),
+              providers: [
 
+                BlocProvider(create: (context) => HomePageBloc(apiRepository: context.read<ApiRepository>(),userId: userID,token: token),),
+
+                BlocProvider(create: (context) => TournamentBloc(apiRepository: context.read<ApiRepository>()),),
+
+              ],
               child: HomePage(userID: userID,token: token,),
 
             )
@@ -48,6 +57,10 @@ class Routes {
 
       case changeLanguage:
         return MaterialPageRoute(builder: (_) => LanguageScreen());
+
+      case tournament:
+        Tournament tournament = Tournament.fromJson(data);
+        return MaterialPageRoute(builder: (_) => TournamentScreen(tournament: tournament,));
 
       case notifications:
 
