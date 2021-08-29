@@ -1,12 +1,12 @@
 import 'package:bluestack_assignment/Repositories/api_repository.dart';
 import 'package:bluestack_assignment/Repositories/auth_repository.dart';
-import 'package:bluestack_assignment/Repositories/firebase_repository.dart';
-import 'package:bluestack_assignment/Screens/HomePage.dart';
-import 'package:bluestack_assignment/Screens/LoginScreen.dart';
+import 'package:bluestack_assignment/Screens/home_page.dart';
+import 'package:bluestack_assignment/Screens/login_screen.dart';
 import 'package:bluestack_assignment/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'Bloc/home_page_bloc/home_page_bloc.dart';
+import 'Bloc/home_page_bloc/tournament_bloc/tournament_bloc.dart';
+import 'Bloc/home_page_bloc/user_detail_bloc/user_detail_bloc.dart';
 import 'Config/SharedPreferenceKey.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -124,10 +124,15 @@ class _MyAppState extends State<MyApp> {
 
           create:(context) => ApiRepository(),
 
-          child: BlocProvider(
+          child: MultiBlocProvider(
 
-            create: (context) => HomePageBloc(apiRepository: context.read<ApiRepository>(),userId: widget.userID,token: widget.token),
+            providers: [
 
+              BlocProvider(create: (context) => HomePageBloc(apiRepository: context.read<ApiRepository>(),userId: widget.userID,token: widget.token),),
+
+              BlocProvider(create: (context) => TournamentBloc(apiRepository: context.read<ApiRepository>()),),
+
+            ],
             child: HomePage(userID: widget.userID,token: widget.token,),
 
           )

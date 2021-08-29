@@ -4,27 +4,27 @@ abstract class NotificationState{}
 
 class UnInitializedState extends NotificationState{}
 
-class LoadingState extends NotificationState{
+class NotificationLoadingState extends NotificationState{
 
   List<NotificationDetail> notifications;
 
-  LoadingState({this.notifications});
+  NotificationLoadingState({this.notifications});
 
 }
 
-class LoadedState extends NotificationState{
+class NotificationLoadedState extends NotificationState{
 
   List<NotificationDetail> notifications;
 
-  LoadedState({this.notifications});
+  NotificationLoadedState({this.notifications});
 
 
 }
 
-class ErrorState extends NotificationState{
+class NotificationErrorState extends NotificationState{
 
   String message;
 
-  ErrorState({this.message});
+  NotificationErrorState({this.message});
 
 }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:bluestack_assignment/Config/ApiStatusKey.dart';
@@ -66,6 +67,8 @@ class ApiRepository{
     });
 
     if(response.statusCode == ApiResponseCode.SUCCESS){
+
+      log(response.body);
 
       RecommendationsDetail recommendationsDetail = RecommendationsDetail.fromJson(jsonDecode(response.body));
 
