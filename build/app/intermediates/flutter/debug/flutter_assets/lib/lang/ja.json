@@ -24,7 +24,9 @@
   "mobileEsportsLive": "モバイルeスポーツはここに住んでいます",
   "favouriteGames": "好きなゲーム",
   "goToHome": "家に帰る",
-  "notifications": "通知"
+  "notifications": "通知",
+  "tournamentDetails": "トーナメントの詳細",
+  "tournamentRules": "トーナメントルール"
 
 
 }

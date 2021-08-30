@@ -74,66 +74,7 @@ class UserDetails extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
 
-                  (isInEditMode) ? Container(
-
-                    height: 80,
-
-                    child: Form(
-
-                      key: _formKey,
-
-                      child: TextFormField(
-
-
-
-                            onChanged: (value)=> editedUsername = value,
-
-                            initialValue: userDetail.username,
-
-                            validator: (value) => (value.length >=3) ? null : getTranslated(context, KeyStrings.userNameErrorText),
-
-                            decoration: InputDecoration(
-
-                              labelText: getTranslated(context, KeyStrings.userName),
-
-                              prefixIcon: Icon(Icons.person),
-
-                              suffixIcon: IconButton(
-
-                                icon: Icon(Icons.check),onPressed: () {
-
-                                  if(_formKey.currentState.validate())
-                                    BlocProvider.of<HomePageBloc>(context).add(ChangeUserName(userName: (editedUsername!=null) ? editedUsername : userDetail.username));
-
-                                } ,
-                              ),
-
-                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
-
-                            )),
-                    ),
-
-
-                  ) : Container(
-
-                          child: Row(
-
-                            children: [
-                              Text(userDetail.username, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),),
-
-                              IconButton(
-
-                                  padding: EdgeInsets.symmetric(horizontal: 8),
-
-                                  icon: Icon(Icons.edit,size: 20,color: Colors.blueAccent,),
-
-                                  onPressed: () => BlocProvider.of<HomePageBloc>(context).add(UserTextFieldVisible(visible: true)),
-
-                              ),
-
-                            ],
-                          ),
-                        ),
+                    (isInEditMode) ? editUsernameTextField(context) : userNameWidget(context),
 
                     SizedBox(height: 16.0,),
 
@@ -288,4 +229,76 @@ class UserDetails extends StatelessWidget {
 
     );
   }
+
+  Widget editUsernameTextField(BuildContext context){
+
+    return Container(
+
+      height: 80,
+
+      child: Form(
+
+        key: _formKey,
+
+        child: TextFormField(
+
+
+
+            onChanged: (value)=> editedUsername = value,
+
+            initialValue: userDetail.username,
+
+            validator: (value) => (value.length >=3) ? null : getTranslated(context, KeyStrings.userNameErrorText),
+
+            decoration: InputDecoration(
+
+              labelText: getTranslated(context, KeyStrings.userName),
+
+              prefixIcon: Icon(Icons.person),
+
+              suffixIcon: IconButton(
+
+                icon: Icon(Icons.check),onPressed: () {
+
+                if(_formKey.currentState.validate())
+                  BlocProvider.of<HomePageBloc>(context).add(ChangeUserName(userName: (editedUsername!=null) ? editedUsername : userDetail.username));
+
+              } ,
+              ),
+
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
+
+            )),
+      ),
+
+
+    );
+
+  }
+
+  Widget userNameWidget(BuildContext context){
+
+   return Container(
+
+     child: Row(
+
+       children: [
+         Text(userDetail.username, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),),
+
+         IconButton(
+
+           padding: EdgeInsets.symmetric(horizontal: 8),
+
+           icon: Icon(Icons.edit,size: 20,color: Colors.blueAccent,),
+
+           onPressed: () => BlocProvider.of<HomePageBloc>(context).add(UserTextFieldVisible(visible: true)),
+
+         ),
+
+       ],
+     ),
+   );
+
+  }
+
 }
