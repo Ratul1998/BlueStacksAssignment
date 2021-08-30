@@ -25,11 +25,13 @@ class Routes {
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
 
-    var data = settings.arguments as Map;
+
 
 
     switch (settings.name) {
       case homeRoute:
+
+        var data = settings.arguments as Map;
 
         String userID = data['user_id'];
         String token = data['token'];
@@ -59,10 +61,12 @@ class Routes {
         return MaterialPageRoute(builder: (_) => LanguageScreen());
 
       case tournament:
-        Tournament tournament = Tournament.fromJson(data);
+        Tournament tournament = settings.arguments as Tournament;
         return MaterialPageRoute(builder: (_) => TournamentScreen(tournament: tournament,));
 
       case notifications:
+
+        var data = settings.arguments as Map;
 
         String username = data['username'];
         String avatarUrl = data['avatarUrl'];

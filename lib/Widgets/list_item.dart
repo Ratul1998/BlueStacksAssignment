@@ -28,18 +28,7 @@ class ListItem extends StatelessWidget {
 
         onTap: (){
 
-          var args ={
-
-            "name":tournaments.name,
-            "cover_url":tournaments.coverUrl,
-            "game_name":tournaments.gameName,
-            "game_icon_url":tournaments.game_icon_url,
-            "details":tournaments.details,
-            "rules":tournaments.rules,
-
-          };
-
-          Navigator.pushNamed(context, Routes.tournament,arguments: args);
+          Navigator.pushNamed(context, Routes.tournament,arguments: tournaments);
 
         },
 

@@ -68,8 +68,6 @@ class ApiRepository{
 
     if(response.statusCode == ApiResponseCode.SUCCESS){
 
-      log(response.body);
-
       RecommendationsDetail recommendationsDetail = RecommendationsDetail.fromJson(jsonDecode(response.body));
 
       return recommendationsDetail;
