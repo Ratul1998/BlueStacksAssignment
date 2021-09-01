@@ -155,6 +155,7 @@ class HomeState extends State<HomePage>{
 
                 }
                 else if (state is TournamentLoadedState){
+                  init = false;
                   return tournamentDataWidget(state.recommendationsDetail,false);
                 }
                 else if (state is TournamentErrorState){
