@@ -119,7 +119,7 @@ class UserDetails extends StatelessWidget {
                           child: Row(
 
                             children: [
-                              Text(userDetail.username, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),),
+                              Text(userDetail.username, style: Theme.of(context).textTheme.headline3),
 
                               IconButton(
 
@@ -156,14 +156,14 @@ class UserDetails extends StatelessWidget {
 
                           Container(
 
-                            child: Text(userDetail.overall_rating.toString(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue),),
+                            child: Text(userDetail.overall_rating.toString(), style: Theme.of(context).textTheme.headline2,),
                           ),
 
                           SizedBox(width: 16,),
 
                           Container(
 
-                            child: Text(getTranslated(context, KeyStrings.eloRating), style: TextStyle(color: Colors.grey),),
+                            child: Text(getTranslated(context, KeyStrings.eloRating),style: Theme.of(context).textTheme.subtitle1,),
                           ),
 
                         ],

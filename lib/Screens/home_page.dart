@@ -78,7 +78,6 @@ class HomeState extends State<HomePage>{
     return Scaffold(
 
       key: _scaffoldKey,
-      backgroundColor: Colors.white,
 
       drawer: BlocBuilder<HomePageBloc,UserDetailState>(
 
@@ -200,7 +199,7 @@ class HomeState extends State<HomePage>{
               margin: EdgeInsets.symmetric(horizontal: 16.0),
               alignment: Alignment.centerLeft,
 
-              child: Text(getTranslated(context, KeyStrings.favouriteGames),style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),)
+              child: Text(getTranslated(context, KeyStrings.favouriteGames),style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),)
           ) : Container(),
 
           (userDetail.favorite_games.length > 0) ? Container(
@@ -237,7 +236,7 @@ class HomeState extends State<HomePage>{
             margin: EdgeInsets.symmetric(horizontal: 16.0),
             alignment: Alignment.centerLeft,
 
-            child: Text(getTranslated(context, KeyStrings.recommendedForYou),style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),)
+            child: Text(getTranslated(context, KeyStrings.recommendedForYou),style: Theme.of(context).textTheme.headline1,)
         ),
 
         SizedBox(height: 16,),

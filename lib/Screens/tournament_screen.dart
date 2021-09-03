@@ -110,10 +110,10 @@ class TournamentState extends State<TournamentScreen> {
                       margin: EdgeInsets.symmetric(horizontal: 16.0,vertical: 16),
                       alignment: Alignment.centerLeft,
 
-                      child: Text(getTranslated(context, KeyStrings.tournamentDetails),style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.black),)
+                      child: Text(getTranslated(context, KeyStrings.tournamentDetails),style:  Theme.of(context).textTheme.headline1,)
                   ),
 
-                  Expanded(child: Divider(height: 1,color: Colors.black54,)),
+                  Expanded(child: Divider(height: 1,color: Theme.of(context).iconTheme.color,)),
                 ],
               ),
 
@@ -133,7 +133,7 @@ class TournamentState extends State<TournamentScreen> {
 
                           children: [
 
-                            Container(margin:EdgeInsets.only(top: 20),child: Icon(Icons.circle,size: 14,color: Colors.black87,)),
+                            Container(margin:EdgeInsets.only(top: 20),child: Icon(Icons.circle,size: 14,color: Theme.of(context).accentColor,)),
 
                             Expanded(
 
@@ -141,7 +141,7 @@ class TournamentState extends State<TournamentScreen> {
 
                                 margin: EdgeInsets.only(left: 16,top: 16),
 
-                                child: Text(e.substring(3),style: TextStyle(color: Colors.black54,fontSize: 20),),),
+                                child: Text(e.substring(3),style: Theme.of(context).textTheme.subtitle2,),),
                             )
 
                           ],
@@ -167,10 +167,10 @@ class TournamentState extends State<TournamentScreen> {
                       margin: EdgeInsets.symmetric(horizontal: 16.0),
                       alignment: Alignment.centerLeft,
 
-                      child: Text(getTranslated(context, KeyStrings.tournamentRules),style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.black),)
+                      child: Text(getTranslated(context, KeyStrings.tournamentRules),style: Theme.of(context).textTheme.headline1,)
                   ),
 
-                  Expanded(child: Divider(height: 1,color: Colors.black54,)),
+                  Expanded(child: Divider(height: 1,color: Theme.of(context).iconTheme.color,)),
 
                 ],
               ),
@@ -191,7 +191,7 @@ class TournamentState extends State<TournamentScreen> {
 
                           children: [
 
-                            Container(margin:EdgeInsets.only(top: 20),child: Icon(Icons.circle,size: 14,color: Colors.black87,)),
+                            Container(margin:EdgeInsets.only(top: 20),child: Icon(Icons.circle,size: 12,color: Theme.of(context).accentColor,)),
 
                             Expanded(
 
@@ -199,7 +199,7 @@ class TournamentState extends State<TournamentScreen> {
 
                                 margin: EdgeInsets.only(left: 16,top: 16),
 
-                                child: Text(e.substring(3),style: TextStyle(color: Colors.black54,fontSize: 20),),),
+                                child: Text(e.substring(3),style: Theme.of(context).textTheme.subtitle2,),),
                             )
 
                           ],

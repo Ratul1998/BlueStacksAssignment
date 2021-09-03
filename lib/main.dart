@@ -49,6 +49,7 @@ class MyApp extends StatefulWidget  {
   String userID;
   String token;
 
+
   MyApp({this.isSignedIn,this.userID,this.token});
 
   static void setLocale(BuildContext context, Locale newLocale) {
@@ -61,6 +62,61 @@ class MyApp extends StatefulWidget  {
 }
 
 class _MyAppState extends State<MyApp> {
+
+  ThemeData darkTheme = ThemeData.dark().copyWith(
+      primaryColor: Colors.blue,
+      accentColor: Colors.blueAccent,
+      shadowColor: Colors.grey[500],
+
+      iconTheme: IconThemeData(
+
+        color: Colors.white,
+
+      ),
+
+      cardColor: ThemeData.dark().scaffoldBackgroundColor,
+
+      textTheme: TextTheme(
+          headline1: TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 18,),
+          headline2: TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold, fontSize: 16,),
+          headline3: TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 20,),
+          subtitle2: TextStyle(color: Colors.white,fontSize: 14),
+          subtitle1: TextStyle(color: Colors.white,fontSize: 14)),
+      appBarTheme: AppBarTheme(color: ThemeData.dark().scaffoldBackgroundColor)
+  );
+
+  ThemeData lightTheme = ThemeData.light().copyWith(
+
+      primaryColor: Colors.blue,
+
+      accentColor: Colors.blueAccent,
+
+      shadowColor: Colors.grey[500],
+
+      iconTheme: IconThemeData(
+
+        color: Colors.grey[900],
+
+      ),
+
+
+      cardColor: Colors.white,
+
+
+      textTheme: TextTheme(
+
+          headline1: TextStyle(color: Colors.grey[900],fontWeight: FontWeight.bold, fontSize: 18,),
+
+          headline2: TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold, fontSize: 16,),
+
+          headline3: TextStyle(color: Colors.grey[900],fontWeight: FontWeight.bold, fontSize: 20,),
+
+          subtitle2: TextStyle(color: Colors.grey[900],fontSize: 14),
+
+          subtitle1: TextStyle(color: Colors.grey[900],fontSize: 16)),
+
+      appBarTheme: AppBarTheme(color: ThemeData.light().scaffoldBackgroundColor)
+  );
 
   Locale _locale;
   setLocale(Locale locale) {
@@ -93,9 +149,7 @@ class _MyAppState extends State<MyApp> {
       onGenerateRoute: Routes.generateRoute,
 
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: darkTheme,
 
       locale: _locale,
       supportedLocales: [

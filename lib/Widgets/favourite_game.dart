@@ -43,9 +43,9 @@ class FavouriteGame extends StatelessWidget{
               ),
               borderRadius: BorderRadius.circular(16),
               color: Colors.white,
-              boxShadow: [const BoxShadow(
+              boxShadow: [ BoxShadow(
 
-                color: Colors.black12,
+                color: Theme.of(context).shadowColor,
                 blurRadius: 5,
                 spreadRadius: 0
 
@@ -63,7 +63,7 @@ class FavouriteGame extends StatelessWidget{
 
             width: 96,
 
-            child: Text(getName(name),overflow:TextOverflow.ellipsis ,style: TextStyle(color: Colors.black,fontSize: 14),),
+            child: Text(getName(name),overflow:TextOverflow.ellipsis ,style: Theme.of(context).textTheme.subtitle2,),
 
           )
 

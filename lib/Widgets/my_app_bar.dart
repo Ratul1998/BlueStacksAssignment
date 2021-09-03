@@ -19,10 +19,10 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget{
     return AppBar(
 
       centerTitle: true,
-      title: Text(getTranslated(context, appBarTitle), textAlign: TextAlign.center, style: TextStyle(color: Colors.black),),
-      backgroundColor: Colors.white, elevation: 0.0,
+      title: Text(getTranslated(context, appBarTitle), textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline3,),
+      elevation: 0.0,
       leading: IconButton(
-        icon: Image.asset('assets/images/nav_bar_icon.png', height: 12,),
+        icon: Image.asset('assets/images/nav_bar_icon.png', height: 12, color: Theme.of(context).iconTheme.color,),
         onPressed: () {
           scaffoldKey.currentState.openDrawer();
         },

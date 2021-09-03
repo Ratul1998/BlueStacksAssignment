@@ -46,6 +46,8 @@ class ListItem extends StatelessWidget {
         child: Card(
           elevation: 4.0,
 
+          shadowColor: Theme.of(context).shadowColor,
+
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16.0),
           ),
@@ -71,12 +73,13 @@ class ListItem extends StatelessWidget {
                   bottom: 0,
                   left: 0,
                   right: 0,
+
                   child: Container(
 
                     height: 85,
                     padding: EdgeInsets.symmetric(horizontal: 16.0),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.vertical(bottom: Radius.circular(16.0))
                     ),
 
@@ -93,14 +96,14 @@ class ListItem extends StatelessWidget {
 
                               Container(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(tournaments.name, overflow: TextOverflow.ellipsis, maxLines: 1, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),)
+                                  child: Text(tournaments.name, overflow: TextOverflow.ellipsis, maxLines: 1, style: Theme.of(context).textTheme.headline1,)
                               ),
 
                               SizedBox(height: 8.0,),
 
                               Container(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(tournaments.gameName,overflow: TextOverflow.ellipsis, maxLines: 1, style: TextStyle(fontSize: 14.0, color: Colors.grey[700],),)
+                                  child: Text(tournaments.gameName,overflow: TextOverflow.ellipsis, maxLines: 1, style:Theme.of(context).textTheme.subtitle1,)
                               ),
 
                               SizedBox(height: 16.0,),
@@ -108,7 +111,7 @@ class ListItem extends StatelessWidget {
                           ),
                         ),
 
-                        Icon(Icons.chevron_right, color: Colors.black, size: 20,)
+                        Icon(Icons.chevron_right, color: Theme.of(context).iconTheme.color, size: 20,)
 
                       ],
                     )

@@ -25,11 +25,11 @@ class NotificationWidget extends StatelessWidget{
 
           borderRadius: BorderRadius.circular(24),
 
-          color: Colors.white,
+          color: Theme.of(context).cardColor,
 
-          boxShadow: [const BoxShadow(
+          boxShadow: [ BoxShadow(
 
-              color: Colors.black12,
+              color: Theme.of(context).shadowColor,
               blurRadius: 7,
               spreadRadius: 0,
               offset: Offset(0, 3),
@@ -75,7 +75,7 @@ class NotificationWidget extends StatelessWidget{
 
                   margin: EdgeInsets.symmetric(horizontal: 16,vertical: 8),
 
-                  child: Text(notificationDetail.title, style: TextStyle(fontSize: 16,color: Colors.grey[700],),maxLines: 3,overflow: TextOverflow.ellipsis,),
+                  child: Text(notificationDetail.title, style: Theme.of(context).textTheme.subtitle1,maxLines: 3,overflow: TextOverflow.ellipsis,),
 
                 ),
               ),

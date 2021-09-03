@@ -22,6 +22,8 @@ class NavigationDrawer extends StatelessWidget{
 
     return Drawer(
 
+      elevation: 4,
+
       child:   ListView(
 
         children: [
@@ -46,17 +48,17 @@ class NavigationDrawer extends StatelessWidget{
             ],
           ),
 
-          ListTile(
+          /*ListTile(
             onTap: () {
               Navigator.pushNamed(context,Routes.changeLanguage);
             },
             leading: Icon(
               Icons.language,
               size: 30,
-              color: Colors.black,
+              color: Theme.of(context).iconTheme.color,
             ),
             title: Text(getTranslated(context, KeyStrings.changeLanguage)),
-          ),
+          ),*/
 
           Visibility(
 
@@ -72,9 +74,9 @@ class NavigationDrawer extends StatelessWidget{
               leading: Icon(
                 Icons.notifications,
                 size: 30,
-                color: Colors.black,
+                color: Theme.of(context).iconTheme.color,
               ),
-              title: Text(getTranslated(context, KeyStrings.notifications)),
+              title: Text(getTranslated(context, KeyStrings.notifications),style: Theme.of(context).textTheme.subtitle1,),
             ),
           ),
 
@@ -90,9 +92,9 @@ class NavigationDrawer extends StatelessWidget{
               leading: Icon(
                 Icons.home,
                 size: 30,
-                color: Colors.black,
+                color: Theme.of(context).iconTheme.color,
               ),
-              title: Text(getTranslated(context, KeyStrings.goToHome)),
+              title: Text(getTranslated(context, KeyStrings.goToHome),style: Theme.of(context).textTheme.subtitle1,),
             ),
           ),
 
@@ -103,9 +105,9 @@ class NavigationDrawer extends StatelessWidget{
             leading: Icon(
               Icons.logout,
               size: 30,
-              color: Colors.black,
+              color: Theme.of(context).iconTheme.color,
             ),
-            title: Text(getTranslated(context, KeyStrings.logOut)),
+            title: Text(getTranslated(context, KeyStrings.logOut),style: Theme.of(context).textTheme.subtitle1,),
           )
         ],
       ),

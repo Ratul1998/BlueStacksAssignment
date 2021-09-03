@@ -5,9 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1cadf424-11a1-4c37-a1b9-8b6411f5d26a" name="Default Changelist" comment="ios setup done">
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config_subset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/version" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/version" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/blueStackFlutterAssignment-master.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/blueStackFlutterAssignment-master.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Screens/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Screens/home_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Screens/tournament_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Screens/tournament_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Widgets/favourite_game.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Widgets/favourite_game.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Widgets/list_item.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Widgets/list_item.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Widgets/my_app_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Widgets/my_app_bar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Widgets/navigation_drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Widgets/navigation_drawer.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Widgets/notification_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Widgets/notification_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Widgets/user_details.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Widgets/user_details.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +41,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="gitignore" />
+        <entry key="$PROJECT_DIR$" value="changes" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
